@@ -1180,7 +1180,7 @@ if ($tryPost === true) {
                  * We've got the content of the quote confirmation. Let's store it in a variable for easy inclusion
                  * in an email.
                  */
-                $emailBody = ob_get_clean();
+                $emailBody = ob_get_contents();
                 /* Define the values we need for sending out an email. */
                 $email = array(
                   "headers" => array(
@@ -1207,10 +1207,8 @@ if ($tryPost === true) {
                   /* Something failed. Dump the exception for debugging purposes. */
                   var_dump($e);
                 }
-                /* We've sent out the cached HTML via email. Now we can clear the buffer. */
+                /* We've sent out the cached HTML via email. Now we can send it to the client. */
                 ob_flush();
-                /* Send the cached HTML to the client. */
-                echo $emailBody;
                 ?>
               </div> <!-- END .well -->
             </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
