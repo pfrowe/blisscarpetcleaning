@@ -866,11 +866,21 @@ if ($tryPost === true) {
                                                id="<?= $nameField ?>" name="<?= $nameField ?>"
                                                <?php
                                                 if (isset($_POST[$nameField]) && ($_POST[$nameField] != ""))
-                                                  echo 'value="' . htmlspecialchars($_POST[$nameField]) . '"';
+                                                  echo "value=\"{htmlspecialchars($_POST[$nameField])}\" ";
+                                                if (isset($infoField["hint"]) && ($infoField["hint"] != "")) {
+                                                  echo "aria-describedby=\"{$nameField}_desc\" ";
+                                                }
                                                ?>
                                                />
                                       <?php
                                       break;
+                                  }
+                                  if (isset($infoField["hint"]) && ($infoField["hint"] != "")) {
+                                    ?>
+                                    <small class="form-text text-muted" id="<?= $nameField ?>_desc">
+                                      <?= htmlspecialchars($infoField["hint"]) ?>
+                                    </small>
+                                    <?php
                                   }
                                   if ($isInvalid && ($errorMessages[$nameField] != "")) {
                                     ?>
