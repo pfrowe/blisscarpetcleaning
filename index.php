@@ -1,8 +1,37 @@
 <!doctype html>
 <?php
+/**
+ * @author Paul Rowe
+ * @copyright 2016-11-05
+ *
+ * This website was created for Bliss Carpet Cleaning in Houston, TX, by Paul Rowe.
+ **/
+/**
+ * Get the PEAR Mail module.
+ **/
 require_once "Mail.php";
+/**
+ * The settings.php file defines values for $dbSettings and $emailSettings.
+ * $dbSettings = [ "hostname", "database", "username", "password" ];
+ * $emailSettings = [ "from", "host", "port", "replyTo", "subject", "to", "username", "password" ];
+ **/
 include "settings.php";
+/**
+ * This array will contain error messages. The messages are displayed at the top of the page and those messages link
+ * (via JavaScript in js/bcc.base.js) to the relevant form control. Any form control which name is found in
+ * $errorMessages is highlighted as "in error" and the error message is additionally displayed
+ * just below the form control (or its description, if it has one).
+ **/
 $errorMessages = array();
+/**
+ * This array contains information about the service fields and their groupings. The top level of the array stores
+ * the groups into which the fields are separated. Each group has two members: header and fields. The header stores
+ * the text to display at the head of the group. The fields member is an array with information about the fields
+ * belonging to that group. Within fields, each member is named for its control and contains the following members:
+ * label (required), type (required), and hint (optional). The isFieldsetEmpty uses the grouping to see if a
+ * particularly group has any user-provided data. Code near the end of the content-contact tab-pane utilizes
+ * $fieldsServices to generate the Services portion of the form.
+ **/
 $fieldsServices = array(
   "carpet_cleaning" => [
     "header" => "Carpet Cleaning",
@@ -85,6 +114,26 @@ $fieldsServices = array(
     ]
   ]
 );
+/**
+ * This array contains information pertinent to validation form input from the Get a Quote page. It is also used by
+ * isFieldsetEmpty to determine if the value provided via the form differs from the value that would be specified by
+ * default. Each member of the $validation array is named according to a form control and contains a default member
+ * with the default value for that field. It will also contain at least one of the following: rangeNumeric, regex,
+ * and required.
+ * When validateInput is called, it checks for the required member first. The required member will have three
+ * members: whenToTest, testExpression, and messageFailure. The whenToTest member has a value that is evaluated to
+ * determine if the field should be required. (In this situation, customer_email is only required if customer_prefer
+ * is set to "email".) The testExpression member has a value that is evaluated to determine if the value passes the
+ * requirement test. The messageFailure member has a string that is displayed with the required test fails.
+ * If the required test passes, validateInput checks for the rangeNumeric member next. The rangeNumeric member will
+ * have up to three members. The rangeMax member indicates the maximum allowable value; the rangeMin member indicates
+ * the minimum allowable value; the messageFailure member provides an error string displayed when range validation
+ * fails.
+ * If all tests so far have passed, validateInput checks for the regex member. The regex member will have three
+ * members. The whenToTest member will indicate when the field should be tested (so long as it isn't empty). The
+ * patternToTest member will include a regular expression which should match a valid pattern and fail otherwise. The
+ * messageFailure member will include an error string displayed when regular expression validation fails.
+ **/
 $validation = array(
   "customer_name" => [
     "default" => "",
@@ -248,6 +297,12 @@ $validation = array(
     ]
   ]
 );
+/**
+ * This function checks to see if a field group is empty. It uses the groupings defined in $fieldsServices and the
+ * default values specified by $validation to perform this check.
+ * @param $nameFieldset: The name of the fieldset (a member of $fieldsServices) which field values should be checked.
+ * @return true if the values of fields within the group are not set or match their defaults; false otherwise.
+ **/
 function isFieldsetEmpty($nameFieldset) {
   $returnValue = true;
   global $fieldsServices, $validation;
@@ -263,6 +318,13 @@ function isFieldsetEmpty($nameFieldset) {
   }
   return $returnValue;
 }
+/**
+ * This function checks to see if the field values provided via POST match the validation rules specified in
+ * $validation. Refer to the documentation for $validation for more information about these rules. If validation
+ * fails, one or more messages will be stored in $errorMessages.
+ * @see $validation
+ * @return void
+ **/
 function validateInput() {
   global $validation, $errorMessages;
   foreach ($_POST as $key => $value) {
@@ -302,8 +364,14 @@ function validateInput() {
     }
   }
 }
+/**
+ * This function commits the values provided via POST to the database. It assumes that validation has already been
+ * performed on the form input and passed.
+ * @return void
+ **/
 function postValues() {
   global $dbSettings, $validation;
+  /* This SQL statement is responsible for inserting the order record. */
   $sqlInsertOrder = <<<__SQL
     INSERT INTO `order`
     SET
@@ -317,10 +385,12 @@ function postValues() {
       `addressZip` = :address_zip,
       `hasSpareCarpet` = :carpet_repair_have_extra;
 __SQL;
+  /* This SQL statement is instrumental for matching form control names with their service keys. */
   $sqlSelectServiceList = <<<__SQL
     SELECT `keyService`, `nameFormVar`
     FROM `service`;
 __SQL;
+  /* This SQL statement is used to insert records linking the new order with its associated services. */
   $sqlInsertService = <<<__SQL
     INSERT INTO `order_service`
     SET
@@ -328,36 +398,62 @@ __SQL;
       `keyService` = :keyService,
       `countUnits` = :countUnits;
 __SQL;
+  /* Get the list of parameters from $sqlInsertOrder. */
   preg_match_all("/\:[\w_]+/", $sqlInsertOrder, $paramsDefined);
+  /* Set up an empty array to store parameter values. */
   $valuesParams = array();
+  /*
+   * Loop through the list of parameters (which share names with form inputs) and assign their values in
+   * $valuesParams.
+   */
   foreach ($paramsDefined[0] as $index => $paramName) {
     $valuesParams[$paramName] = $_POST[preg_replace("/^\:/", "", $paramName)];
   }
+  /* Create the connection to the database. */
   $pdoCnxn = new PDO(
     "mysql:host={$dbSettings['hostname']};dbname={$dbSettings['database']}",
     $dbSettings["username"],
     $dbSettings["password"]
   );
+  /* Prepare the INSERT statement for the order record. */
   $stmtInsertOrder = $pdoCnxn->prepare($sqlInsertOrder);
+  /* Execute the INSERT statement, attaching the parameter values. */
   $stmtInsertOrder->execute($valuesParams);
+  /* Get the key for the new order record. */
   $keyNewOrder = $pdoCnxn->lastInsertId();
+  /* Get all the service records so we can loop through them. */
   $resultsServices = $pdoCnxn->query($sqlSelectServiceList)->fetchAll();
+  /* Loop through the service records. */
   foreach ($resultsServices as $index => $currentRow) {
+    /*
+     * All of these fields are numeric and, if requested, positive values. Check to see if they are set and greater
+     * than zero.
+     */
     if (isset($_POST[$currentRow["nameFormVar"]]) && ($_POST[$currentRow["nameFormVar"]] > 0)) {
+      /* This service has been requested. Prepare the INSERT statement for its order_service record. */
       $stmtInsertService = $pdoCnxn->prepare($sqlInsertService);
+      /* Bind the value of the order key. */
       $stmtInsertService->bindParam(":keyNewOrder", $keyNewOrder);
+      /* Bind the value of the service key. */
       $stmtInsertService->bindParam(":keyService", $currentRow["keyService"]);
+      /* Bind the value of the service count. */
       $stmtInsertService->bindParam(":countUnits", $_POST[$currentRow["nameFormVar"]]);
+      /* Execute the INSERT statement. */
       $stmtInsertService->execute();
     }
   }
 }
 $doPost = false;
+/* Did the user submit a form post? */
 $tryPost = (isset($_POST["bcc_quote_submit"]) && ($_POST["bcc_quote_submit"] == 1));
 if ($tryPost === true) {
+  /* Yes, the user submitted a form post. Is the input valid? */
   validateInput();
+  /* If the input is valid, $errorMessages should have zero members and we can continue posting to the database. */
   $doPost = count($errorMessages) === 0;
+  /* Was the input valid? */
   if ($doPost) {
+    /* Yes, the input was valid. Post the order to the database. */
     postValues();
   }
 }
@@ -601,11 +697,15 @@ if ($tryPost === true) {
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h2>Get a Quote</h2>
             <?php
+              /* Do we have any error messages to display? */
               if (count($errorMessages) > 0) {
+                /* Yes, we do. Let's start with the wrapper... */
                 ?>
                   <div class="alert alert-danger" role="alert"><ul>
                 <?php
+                /* And loop through the messages. */
                 foreach($errorMessages as $fieldName => $errorMessage) {
+                  /* The JavaScript in bcc.base.js will handle the click event on these <li> elements. */
                   ?>
                     <li for="<?= $fieldName ?>">
                       <span class="glyphicon glyphicon-remove"></span>
@@ -613,6 +713,7 @@ if ($tryPost === true) {
                     </li>
                   <?php
                 }
+                /* We're done displaying error messages. Close the wrapper. */
                 ?>
                   </ul></div>
                 <?php
@@ -637,7 +738,9 @@ if ($tryPost === true) {
                               echo "value=\"" . htmlspecialchars($_POST["customer_name"]) . "\"";
                            ?> />
                     <?php
+                    /* Did the customer_name field fail validation? */
                     if ($isInvalid && ($errorMessages["customer_name"] != "")) {
+                      /* Yes, the customer_name field failed validation. Display its error message. */
                       ?>
                         <div class="form-control-feedback">
                           <span class="glyphicon glyphicon-remove"></span>
@@ -656,7 +759,9 @@ if ($tryPost === true) {
                               echo "value=\"" . htmlspecialchars($_POST["customer_email"]) . "\"";
                            ?> />
                     <?php
+                    /* Did the customer_email field fail validation? */
                     if ($isInvalid && ($errorMessages["customer_email"] != "")) {
+                      /* Yes, the customer_email field failed validation. Display its error message. */
                       ?>
                         <div class="form-control-feedback">
                           <span class="glyphicon glyphicon-remove"></span>
@@ -675,7 +780,9 @@ if ($tryPost === true) {
                               echo "value=\"" . htmlspecialchars($_POST["customer_phone"]) . "\"";
                            ?> />
                     <?php
+                    /* Did the customer_phone field fail validation? */
                     if ($isInvalid && ($errorMessages["customer_phone"] != "")) {
+                      /* Yes, the customer_phone field failed validation. Display its error message. */
                       ?>
                         <div class="form-control-feedback">
                           <span class="glyphicon glyphicon-remove"></span>
@@ -709,7 +816,9 @@ if ($tryPost === true) {
                       </label>
                     </div> <!-- END .form-check -->
                     <?php
+                    /* Did the customer_prefer field fail validation? */
                     if ($isInvalid && ($errorMessages["customer_prefer"] != "")) {
+                      /* Yes, the customer_prefer field failed validation. Display its error message. */
                       ?>
                         <div class="form-control-feedback">
                           <span class="glyphicon glyphicon-remove"></span>
@@ -736,7 +845,9 @@ if ($tryPost === true) {
                               echo 'value="' . htmlspecialchars($_POST['address_street1']) . '"';
                            ?> />
                     <?php
+                    /* Did the address_street1 field fail validation? */
                     if ($isInvalid && ($errorMessages["address_street1"] != "")) {
+                      /* Yes, the address_street1 field failed validation. Display its error message. */
                       ?>
                         <div class="form-control-feedback">
                           <span class="glyphicon glyphicon-remove"></span>
@@ -756,7 +867,9 @@ if ($tryPost === true) {
                            ?>
                            />
                     <?php
+                    /* Did the address_street2 field fail validation? */
                     if ($isInvalid && ($errorMessages["address_street2"] != "")) {
+                      /* Yes, the address_street2 field failed validation. Display its error message. */
                       ?>
                         <div class="form-control-feedback">
                           <span class="glyphicon glyphicon-remove"></span>
@@ -782,7 +895,9 @@ if ($tryPost === true) {
                       <div class="input-group-addon">, Texas</div>
                     </div>
                     <?php
+                    /* Did the address_city field fail validation? */
                     if ($isInvalid && ($errorMessages["address_city"] != "")) {
+                      /* Yes, the address_city field failed validation. Display its error message. */
                       ?>
                         <div class="form-control-feedback">
                           <span class="glyphicon glyphicon-remove"></span>
@@ -805,7 +920,9 @@ if ($tryPost === true) {
                            ?>
                            />
                     <?php
+                    /* Did the address_zip field fail validation? */
                     if ($isInvalid && ($errorMessages["address_zip"] != "")) {
+                      /* Yes, the address_zip field failed validation. Display its error message. */
                       ?>
                         <div class="form-control-feedback">
                           <span class="glyphicon glyphicon-remove"></span>
@@ -822,7 +939,9 @@ if ($tryPost === true) {
                 <div class="well">
                   <div class="panel-group" aria-multiselectable="true">
                     <?php
+                    /* Loop through the groups in $fieldsServices. */
                     foreach ($fieldsServices as $fieldGroup => $infoGroup) {
+                      /* Start by displaying the header. Follow that by opening the panel-body <div>. */
                       ?>
                         <div class="panel">
                           <div class="panel-heading" id="<?= $fieldGroup . '_hdr' ?>">
@@ -836,13 +955,17 @@ if ($tryPost === true) {
                                id="<?= $fieldGroup ?>" aria-labelledby="<?= $fieldGroup . '_hdr' ?>">
                             <div class="panel-body">
                               <?php
+                              /* Loop through the fields within this group. */
                               foreach($infoGroup["fields"] as $nameField => $infoField) {
+                                /* Did this field fail validation? */
                                 $isInvalid = isset($errorMessages[$nameField]);
                                 ?>
                                 <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
                                   <?php
+                                  /* Different types of fields get displayed different ways. Which type is this? */
                                   switch ($infoField["type"]) {
                                     case "checkbox":
+                                      /* If a checkbox, display the input, then the label. */
                                       ?>
                                       <div class="form-check <?= $isInvalid ? 'has-error' : '' ?>">
                                         <input type="<?= $infoField["type"] ?>" id="<?= $nameField ?>"
@@ -858,6 +981,7 @@ if ($tryPost === true) {
                                       <?php
                                       break;
                                     case "number":
+                                      /* If a number, display the label, then the input. */
                                       ?>
                                         <label class="control-label" for="<?= $nameField ?>">
                                           <?= htmlspecialchars($infoField["label"]) ?>
@@ -875,14 +999,18 @@ if ($tryPost === true) {
                                       <?php
                                       break;
                                   }
+                                  /* Is a hint defined for this field? */
                                   if (isset($infoField["hint"]) && ($infoField["hint"] != "")) {
+                                    /* Yes, a hint is defined for this field. Display it. */
                                     ?>
                                     <small class="form-text text-muted" id="<?= $nameField ?>_desc">
                                       <?= htmlspecialchars($infoField["hint"]) ?>
                                     </small>
                                     <?php
                                   }
+                                  /* Did this field fail validation? */
                                   if ($isInvalid && ($errorMessages[$nameField] != "")) {
+                                    /* Yes, this field failed validation. Display its error message. */
                                     ?>
                                       <div class="form-control-feedback">
                                         <span class="glyphicon glyphicon-remove"></span>
@@ -917,7 +1045,10 @@ if ($tryPost === true) {
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div class="well">
                 <h2>Thank you!</h2>
-                <?php ob_start() ?>
+                <?php
+                /* Start caching the output so we can store it in a variable. */
+                ob_start()
+                ?>
                 <fieldset class="form-group">
                   <h3>Contact Info and Location</h3>
                   <div class="row">
@@ -952,6 +1083,7 @@ if ($tryPost === true) {
                   </div> <!-- END .row -->
                 </fieldset>
                 <?php
+                /* Only show each of the following sections if form input was provided for them. */
                 if (!isFieldsetEmpty("carpet_cleaning")) { ?>
                   <h3>Carpet Cleaning</h3>
                   <div class="row">
@@ -1044,30 +1176,40 @@ if ($tryPost === true) {
                     </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
                   </div> <!-- END .row -->
                 <?php }
+                /*
+                 * We've got the content of the quote confirmation. Let's store it in a variable for easy inclusion
+                 * in an email.
+                 */
                 $emailBody = ob_get_clean();
+                /* Define the values we need for sending out an email. */
                 $email = array(
                   "headers" => array(
-                    "From" => $emailDefault["from"],
-                    "Reply-To" => $emailDefault["replyTo"],
+                    "From" => $emailSettings["from"],
+                    "Reply-To" => $emailSettings["replyTo"],
                     "MIME-Version" => "1.0",
                     "Content-Type" => "text/html; charset=UTF-8"
                   ),
                   "message" => $emailBody,
-                  "subject" => $emailDefault["subject"],
-                  "to" => $emailDefault["to"]
+                  "subject" => $emailSettings["subject"],
+                  "to" => $emailSettings["to"]
                 );
                 try {
+                  /* Try creating the Mail object. */
                   $smtp = Mail::factory(
                     "smtp",
                     array(
                       "auth" => false
                     )
                   );
+                  /* Try sending the email out. */
                   $mail = $smtp->send($email["to"], $email["headers"], $email["message"]);
                 } catch (Exception $e) {
+                  /* Something failed. Dump the exception for debugging purposes. */
                   var_dump($e);
                 }
+                /* We've sent out the cached HTML via email. Now we can clear the buffer. */
                 ob_flush();
+                /* Send the cached HTML to the client. */
                 echo $emailBody;
                 ?>
               </div> <!-- END .well -->
