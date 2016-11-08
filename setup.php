@@ -90,6 +90,7 @@ CREATE TABLE `order` (
   `addressCity` VARCHAR(255) COMMENT 'City associated with the service location',
   `addressZip` VARCHAR(10) COMMENT 'ZIP Code associated with the service location',
   `hasSpareCarpet` TINYINT(1) COMMENT 'Customer indicated spare carpet is available for repairs',
+  `textComment` TEXT COMMENT 'Additional notes provided by the customer',
   `dateQuoted` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `dateServiced` DATETIME,
   `amountQuoted` DECIMAL (8, 2) NOT NULL DEFAULT 0 COMMENT 'Total amount quoted (may deviate from calculated amount)'
@@ -132,7 +133,6 @@ CREATE TABLE `order_special` (
 );
 __SQL;
 $sqlPopulateCategoryTable = <<<__SQL
-TRUNCATE TABLE `category`;
 INSERT INTO `category` (`nameCategory`)
 VALUES
   ('Air Duct Cleaning'), -- 1
@@ -144,7 +144,6 @@ VALUES
   ('Wood Floor Cleaning'); -- 7
 __SQL;
 $sqlPopulateServiceTable = <<<__SQL
-TRUNCATE TABLE `service`;
 INSERT INTO `service` (
   `keyCategory`, `nameFormVar`, `nameService`, `allowPartialUnits`, `unitSingular`, `unitPlural`, `costStandard`
 )
@@ -164,20 +163,17 @@ VALUES
   (7, 'wood_cleaning_area', 'Estimated Sq. Ft.', 1, 'sq.ft.', 'sq. ft.', 0.79); -- 13
 __SQL;
 $sqlPopulateSpecialTable = <<<__SQL
-TRUNCATE TABLE `special`;
 INSERT INTO `special` (`nameSpecial`, `codeRequired`, `dateBegin`, `dateEnd`, `isExclusive`, `blocksExclusive`)
 VALUES
   ('Five Rooms for $99', NULL, '0000-01-01', '9999-12-31', 0, 0);
 __SQL;
 $sqlPopulateSpecialEffectTable = <<<__SQL
-TRUNCATE TABLE `special_effect`;
 INSERT INTO `special_effect` (`keySpecial`, `keyService`, `countMax`, `typeDiscount`, `rateDiscount`)
 VALUES
   (1, 2, 5, 'fixCost', 19.80), -- Five rooms for $99 (99 / 5 = 19.80)
   (1, 3, 2, 'fixCost', 0.00) -- Five rooms for $99, up to 2 hallways free
 __SQL;
 $sqlPopulateSpecialPrereqTable = <<<__SQL
-TRUNCATE TABLE `special_prereq`;
 INSERT INTO `special_prereq` (`keySpecial`, `keyService`, `countMin`, `countMax`)
 VALUES
   (1, 2, 5, NULL) -- Five Rooms for $99 (at least 5 rooms quoted)

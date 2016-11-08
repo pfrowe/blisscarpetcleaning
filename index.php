@@ -45,7 +45,7 @@ $fieldsServices = array(
         "type" => "number"
       ],
       "carpet_cleaning_count_stairs" => [
-        "label" => "Number of stairways",
+        "label" => "Number of staircases",
         "type" => "number"
       ],
       "carpet_cleaning_count_protect" => [
@@ -383,7 +383,8 @@ function postValues() {
       `addressStreet2` = :address_street2,
       `addressCity` = :address_city,
       `addressZip` = :address_zip,
-      `hasSpareCarpet` = :carpet_repair_have_extra;
+      `hasSpareCarpet` = :carpet_repair_have_extra,
+      `textComment` = :comment_text;
 __SQL;
   /* This SQL statement is instrumental for matching form control names with their service keys. */
   $sqlSelectServiceList = <<<__SQL
@@ -518,7 +519,7 @@ if ($tryPost === true) {
                   </ol>
                   <div class="carousel-inner" role="listbox">
                     <div class="carousel-item item active">
-                      <img src="img/family-operated.png" alt="Family owned and operated since 2007" />
+                      <img src="img/van-mounted.png" alt="Family owned and operated since 2007" />
                       <h1>Family owned and operated</h1>
                       <h2>Serving the Houston Area since 2007</h2>
                     </div> <!-- END .carousel-item .item :nth-child(1) -->
@@ -623,8 +624,13 @@ if ($tryPost === true) {
                 We'll clean your rooms for $25 each. Minimum of two rooms per visit. Larger rooms may incur an
                 additional charge.
               </p>
-              <h3>Hallways</h3>
-              <h3>Staircases</h3>
+              <h3>Pre-treatment</h3>
+              <p>
+                We use a unique combination of products to break up stains and dirt in your carpet before we pull it
+                out with our cleaning equipment. Prices vary based on the area we need to pre-treat.
+              </p>
+              <h3>Scotch Guard</h3>
+              <p>We can protect your carpet from future stains once we've got it clean.</p>
             </div> <!-- END .well -->
           </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
         </div> <!-- END .row -->
@@ -633,61 +639,14 @@ if ($tryPost === true) {
             <div class="well">
               <h2>Wood Floor Cleaning Rates</h2>
               <h3>79&cent; / sq. ft.</h3>
-              <p>
-                We'll restore the beauty of your hardwood floors for only $0.79 per square foot.
-              </p>
+              <p>We'll restore the beauty of your hardwood floors for only $0.79 per square foot.</p>
             </div> <!-- END .well -->
           </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="well">
               <h2>Tile &amp; Grout Cleaning Rates</h2>
               <h3>79&cent; / sq. ft.</h3>
-              <p>
-                Save your hips and your knees. We'll clean your tile floors for $0.79 per square foot.
-              </p>
-            </div> <!-- END .well -->
-          </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
-        </div> <!-- END .row -->
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="well">
-              <h2>Carpet Repair</h2>
-              <h3>$50 / patch</h3>
-              <p>
-                Do you have stains that won't come out? Maybe your pet thinks your carpet is rich in dietary fiber?
-              </p>
-            </div> <!-- END .well -->
-          </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="well">
-              <h2>Carpet Dying</h2>
-              <h3>$100 / room</h3>
-              <p>
-                Does your room need a change of mood without a complete repaint or new carpet? A carpet dye may be the
-                answer.
-              </p>
-            </div> <!-- END .well -->
-          </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
-        </div> <!-- END .row -->
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="well">
-              <h2>Upholstery Cleaning</h2>
-              <h3>Starting at $79</h3>
-              <p>
-                Did your upholstery have a little too much to drink last weekend? We'll be happy to come by and help it
-                come clean.
-              </p>
-            </div> <!-- END .well -->
-          </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="well">
-              <h2>Air Duct Cleaning</h2>
-              <h3>$25 / vent</h3>
-              <p>
-                Are your allergies acting up? Maybe there's a smell in the air, but it's not coming from a specific
-                room. It might be time for you to get the air ducts cleaned.
-              </p>
+              <p>Save your hips and your knees. We'll clean your tile floors for $0.79 per square foot.</p>
             </div> <!-- END .well -->
           </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
         </div> <!-- END .row -->
@@ -1030,8 +989,21 @@ if ($tryPost === true) {
                     }
                     ?>
                   </div> <!-- END .panel-group -->
-                  <button type="submit" class="btn btn-primary" name="bcc_quote_submit" value="1">Get a Quote</button>
                 </div> <!-- END .well -->
+              </fieldset>
+              <fieldset class="form-group">
+                <legend>Anything else you think would be helpful?</legend>
+                <div class="well">
+                  <div class="form-group">
+                    <label class="control-label" for="comment_text">Additional comments</label>
+                    <textarea class="form-control" id="comment_text" name="comment_text"
+                    ><?php
+                      if (isset($_POST["comment_text"]))
+                        echo htmlspecialchars($_POST["comment_text"]);
+                    ?></textarea>
+                  </div>
+                </div> <!-- END .well -->
+                <button type="submit" class="btn btn-primary" name="bcc_quote_submit" value="1">Get a Quote</button>
               </fieldset>
             </form>
           </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
@@ -1176,6 +1148,14 @@ if ($tryPost === true) {
                     </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
                   </div> <!-- END .row -->
                 <?php }
+                if (isset($_POST["comment_text"]) && ($_POST["comment_text"] != "")) { ?>
+                  <h3>Additional Comments</h3>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <p><?= preg_replace("/\\n+/", "</p></p>", htmlspecialchars($_POST["comment_text"])) ?></p>
+                    </div>
+                  </div>
+                <?php }
                 /*
                  * We've got the content of the quote confirmation. Let's store it in a variable for easy inclusion
                  * in an email.
@@ -1198,7 +1178,11 @@ if ($tryPost === true) {
                   $smtp = Mail::factory(
                     "smtp",
                     array(
-                      "auth" => false
+                      "auth" => false,
+                      "host" => $emailSettings["host"],
+                      "port" => $emailSettings["port"],
+                      "username" => $emailSettings["username"],
+                      "password" => $emailSettings["password"]
                     )
                   );
                   /* Try sending the email out. */
