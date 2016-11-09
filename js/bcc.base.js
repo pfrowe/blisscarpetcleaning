@@ -12,6 +12,13 @@ var bcc_base = (function () {
     a.src = g;
     m.parentNode.insertBefore(a, m);
   }
+  function loadFonts() {
+    var urlFonts = "https://fonts.googleapis.com/css?family=Chango|Roboto";
+    $(document.createElement("link"))
+      .attr("rel", "stylesheet")
+      .attr("href", urlFonts)
+      .appendTo(document.head);
+  }
   function submitGoogleAnalyticsData() {
     ga("create", "UA-87073608-1", "auto");
     ga("send", "pageview");
@@ -37,6 +44,7 @@ var bcc_base = (function () {
     $(".nav > li > a").on("click", onClick_navLink);
     createGoogleAnalyticsObject(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
     submitGoogleAnalyticsData();
+    loadFonts();
   }
   $(document).ready(onReady);
   return {};

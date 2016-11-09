@@ -629,7 +629,8 @@ if ($tryPost === true) {
                 <h3>Pre-treatment</h3>
                 <p>
                   We use a unique combination of products to break up stains and dirt in your carpet before we pull
-                  it out with our cleaning equipment. Prices vary based on the area we need to pre-treat.
+                  it out with our cleaning equipment. Pre-treatment starts at $15 and includes spot-cleaning of two
+                  rooms. Additional charges may be incurred for more rooms and large or hard-to-lift stains.
                 </p>
                 <h3>Scotch Guard</h3>
                 <p>We can protect your carpet from future stains once we've got it clean.</p>
