@@ -459,9 +459,10 @@ if ($tryPost === true) {
   }
 }
 ?>
-<html>
+<html lang="en">
   <head>
     <title>Bliss Carpet Cleaning - Serving Houston, TX</title>
+    <meta charset="utf-8" />
     <meta name="description"
           content="Bliss Carpet Cleaning is a family-owned and -operated business serving Houston, TX, and providing services including: carpet cleaning, wood floor cleaning, tile and grout cleaning, upholstery cleaning, carpet repair, carpet dying, and air duct cleaning." />
     <meta name="keywords"
@@ -476,7 +477,7 @@ if ($tryPost === true) {
     <nav class="navbar navbar-fixed-top navbar-inverse">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
+        <div class="navbar-header"><form action="#">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                   data-target="#navbar-menu-collapse" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
@@ -487,7 +488,7 @@ if ($tryPost === true) {
           <img alt="Bliss Carpet Cleaning logo" class="logo" src="img/orange-cleaner.png" />
           <a class="navbar-brand" href="#">Bliss Carpet Cleaning</a>
           <a class="navbar-contact" href="tel:2817097708">281 709 7708</a>
-        </div>
+        </form></div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-menu-collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -502,706 +503,725 @@ if ($tryPost === true) {
         </div><!-- END .navbar-collapse -->
       </div><!-- END .container-fluid -->
     </nav>
-    <div class="container tab-content" id="begin-content">
-      <div class="container-fluid tab-pane <?= $tryPost ? '' : 'active' ?>" id="content-home">
-        <div class="row">
-          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <div class="well">
-              <div class="hero-unit">
-                <div id="hero__carousel" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <li data-target="#hero__carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#hero__carousel" data-slide-to="1"></li>
-                    <li data-target="#hero__carousel" data-slide-to="2"></li>
-                    <li data-target="#hero__carousel" data-slide-to="3"></li>
-                    <li data-target="#hero__carousel" data-slide-to="4"></li>
-                    <li data-target="#hero__carousel" data-slide-to="5"></li>
-                  </ol>
-                  <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item item active">
-                      <img src="img/van-mounted.png" alt="Family owned and operated since 2007" />
-                      <h1>Family owned and operated</h1>
-                      <h2>Serving the Houston Area since 2007</h2>
-                    </div> <!-- END .carousel-item .item :nth-child(1) -->
-                    <div class="carousel-item item">
-                      <img src="img/wood-before-after.png" alt="Wood floor cleaning" />
-                      <h1>More than carpet cleaning&hellip;</h1>
-                      <h2>Wood floor cleaning</h2>
-                    </div> <!-- END .carousel-item .item :nth-child(3) -->
-                    <div class="carousel-item item">
-                      <img src="img/tile-before-after.png" alt="Tile and grout cleaning" />
-                      <h1>More than carpet cleaning&hellip;</h1>
-                      <h2>Tile and grout cleaning</h2>
-                    </div> <!-- END .carousel-item .item :nth-child(4) -->
-                    <div class="carousel-item item">
-                      <img src="img/upholstery-before-after.png" alt="Upholstery cleaning" />
-                      <h1>More than carpet cleaning&hellip;</h1>
-                      <h2>Upholstery cleaning</h2>
-                    </div> <!-- END .carousel-item .item :nth-child(7) -->
-                    <div class="carousel-item item">
-                      <img src="img/repair-before-after.png" alt="Carpet repair" />
-                      <h1>More than carpet cleaning&hellip;</h1>
-                      <h2>Carpet repair and dying</h2>
-                    </div> <!-- END .carousel-item .item :nth-child(2) -->
-                    <div class="carousel-item item">
-                      <img src="img/duct-before-after.png" alt="Air duct cleaning" />
-                      <h1>More than carpet cleaning&hellip;</h1>
-                      <h2>Air duct cleaning</h2>
-                    </div> <!-- END .carousel-item .item :nth-child(5) -->
-                  </div> <!-- END .carousel-inner -->
-                  <a class="left carousel-control" href="#hero__carousel" role="button" data-slide="prev">
-                    <span class="icon-prev" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="right carousel-control" href="#hero__carousel" role="button" data-slide="next">
-                    <span class="icon-next" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div> <!-- END .carousel .slide #hero__carousel -->
-              </div> <!-- END .hero-unit -->
-            </div> <!-- END .well -->
-          </div> <!-- END .col-sm-12 .col-md-12 .col-lg-12 .col-xl-12 -->
-        </div> <!-- END .row -->
-        <div class="row">
-          <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
-            <div class="well">
-              <h2>Our Services</h2>
-              <p>Serving the Houston area since 2007, we offer a variety of cleaning services.</p>
-              <ul>
-                <li>Carpet cleaning</li>
-                <li>Wood floor cleaning</li>
-                <li>Tile and grout cleaning</li>
-                <li>Upholstery cleaning</li>
-                <li>Carpet repair</li>
-                <li>Air duct cleaning</li>
-              </ul>
-            </div> <!-- END .well -->
-          </div> <!-- END .col-sm-12 .col-md-6 .col-lg-6 .col-xl-12 -->
-          <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
-            <div class="well">
-              <h2>Quality Cleaning</h2>
-              <h3>Hygienic</h3>
-              <p>
-                Our truck-mounted cleaning units kill germs with water heated to 230&deg;F. Thorough cleaning also
-                reduces the amount of allergens in the air, whether in your carpet or your air ducts.
-              </p>
-              <h3>Protective</h3>
-              <p>We offer Scotch Guard treatment to lengthen the life of your carpets.</p>
-              <h3>Environmentally conscious</h3>
-              <p>Our cleaning products are natural and bio-degradable.</p>
-              <h3>Thorough</h3>
-              <p>We pre-treat heavy traffic areas and rinse cleaned carpets with water.</p>
-            </div> <!-- END .well -->
-          </div> <!-- END .col-sm-12 .col-md-6 .col-lg-6 .col-xl-12 -->
-        </div> <!-- END .row -->
-      </div> <!-- END #content-home -->
-      <div class="container-fluid tab-pane" id="content-specials">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="well">
-              <h2>Five Rooms &ndash; $99</h2>
-              <p>
-                Get five rooms cleaned for only $99! Take advantage of this special and get up to two hallways cleaned
-                FREE.
-              </p>
-            </div> <!-- END .well -->
-          </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="well">
-              <h2>VIP Customers</h2>
-              <p>
-                Ask us about how to become a VIP customer and get discounts on our services!
-              </p>
-            </div> <!-- END .well -->
-          </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
-        </div> <!-- END .row -->
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="well">
-              <h2>Standard Carpet Cleaning Rates</h2>
-              <h3>$25 per room</h3>
-              <p>
-                We'll clean your rooms for $25 each. Minimum of two rooms per visit. Larger rooms may incur an
-                additional charge.
-              </p>
-              <h3>Pre-treatment</h3>
-              <p>
-                We use a unique combination of products to break up stains and dirt in your carpet before we pull it
-                out with our cleaning equipment. Prices vary based on the area we need to pre-treat.
-              </p>
-              <h3>Scotch Guard</h3>
-              <p>We can protect your carpet from future stains once we've got it clean.</p>
-            </div> <!-- END .well -->
-          </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
-        </div> <!-- END .row -->
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="well">
-              <h2>Wood Floor Cleaning Rates</h2>
-              <h3>79&cent; / sq. ft.</h3>
-              <p>We'll restore the beauty of your hardwood floors for only $0.79 per square foot.</p>
-            </div> <!-- END .well -->
-          </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="well">
-              <h2>Tile &amp; Grout Cleaning Rates</h2>
-              <h3>79&cent; / sq. ft.</h3>
-              <p>Save your hips and your knees. We'll clean your tile floors for $0.79 per square foot.</p>
-            </div> <!-- END .well -->
-          </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
-        </div> <!-- END .row -->
-      </div> <!-- END #content-specials -->
-      <div class="container-fluid tab-pane <?= $tryPost && !$doPost ? 'active' : '' ?>" id="content-contact">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h2>Get a Quote</h2>
-            <?php
-              /* Do we have any error messages to display? */
-              if (count($errorMessages) > 0) {
-                /* Yes, we do. Let's start with the wrapper... */
-                ?>
-                  <div class="alert alert-danger" role="alert"><ul>
-                <?php
-                /* And loop through the messages. */
-                foreach($errorMessages as $fieldName => $errorMessage) {
-                  /* The JavaScript in bcc.base.js will handle the click event on these <li> elements. */
+    <main id="begin-content" tabindex="-1">
+      <div class="container tab-content">
+        <div class="container-fluid tab-pane <?= $tryPost ? '' : 'active' ?>" id="content-home">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div class="well">
+                <div class="hero-unit">
+                  <div id="hero__carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                      <li data-target="#hero__carousel" data-slide-to="0" class="active"></li>
+                      <li data-target="#hero__carousel" data-slide-to="1"></li>
+                      <li data-target="#hero__carousel" data-slide-to="2"></li>
+                      <li data-target="#hero__carousel" data-slide-to="3"></li>
+                      <li data-target="#hero__carousel" data-slide-to="4"></li>
+                      <li data-target="#hero__carousel" data-slide-to="5"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                      <div class="carousel-item item active">
+                        <img src="img/van-mounted.png" alt="Family owned and operated since 2007" />
+                        <h1>Family owned and operated</h1>
+                        <h2>Serving the Houston Area since 2007</h2>
+                      </div> <!-- END .carousel-item .item :nth-child(1) -->
+                      <div class="carousel-item item">
+                        <img src="img/wood-before-after.png" alt="Wood floor cleaning" />
+                        <h1>More than carpet cleaning&hellip;</h1>
+                        <h2>Wood floor cleaning</h2>
+                      </div> <!-- END .carousel-item .item :nth-child(3) -->
+                      <div class="carousel-item item">
+                        <img src="img/tile-before-after.png" alt="Tile and grout cleaning" />
+                        <h1>More than carpet cleaning&hellip;</h1>
+                        <h2>Tile and grout cleaning</h2>
+                      </div> <!-- END .carousel-item .item :nth-child(4) -->
+                      <div class="carousel-item item">
+                        <img src="img/upholstery-before-after.png" alt="Upholstery cleaning" />
+                        <h1>More than carpet cleaning&hellip;</h1>
+                        <h2>Upholstery cleaning</h2>
+                      </div> <!-- END .carousel-item .item :nth-child(7) -->
+                      <div class="carousel-item item">
+                        <img src="img/repair-before-after.png" alt="Carpet repair" />
+                        <h1>More than carpet cleaning&hellip;</h1>
+                        <h2>Carpet repair and dying</h2>
+                      </div> <!-- END .carousel-item .item :nth-child(2) -->
+                      <div class="carousel-item item">
+                        <img src="img/duct-before-after.png" alt="Air duct cleaning" />
+                        <h1>More than carpet cleaning&hellip;</h1>
+                        <h2>Air duct cleaning</h2>
+                      </div> <!-- END .carousel-item .item :nth-child(5) -->
+                    </div> <!-- END .carousel-inner -->
+                    <a class="left carousel-control" href="#hero__carousel" data-slide="prev">
+                      <span class="icon-prev" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#hero__carousel" data-slide="next">
+                      <span class="icon-next" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div> <!-- END .carousel .slide #hero__carousel -->
+                </div> <!-- END .hero-unit -->
+              </div> <!-- END .well -->
+            </div> <!-- END .col-sm-12 .col-md-12 .col-lg-12 .col-xl-12 -->
+          </div> <!-- END .row -->
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
+              <div class="well">
+                <h2>Our Services</h2>
+                <p>Serving the Houston area since 2007, we offer a variety of cleaning services.</p>
+                <ul>
+                  <li>Carpet cleaning</li>
+                  <li>Wood floor cleaning</li>
+                  <li>Tile and grout cleaning</li>
+                  <li>Upholstery cleaning</li>
+                  <li>Carpet repair</li>
+                  <li>Air duct cleaning</li>
+                </ul>
+              </div> <!-- END .well -->
+            </div> <!-- END .col-sm-12 .col-md-6 .col-lg-6 .col-xl-12 -->
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
+              <div class="well">
+                <h2>Quality Cleaning</h2>
+                <h3>Hygienic</h3>
+                <p>
+                  Our truck-mounted cleaning units kill germs with water heated to 230&deg;F. Thorough cleaning also
+                  reduces the amount of allergens in the air, whether in your carpet or your air ducts.
+                </p>
+                <h3>Protective</h3>
+                <p>We offer Scotch Guard treatment to lengthen the life of your carpets.</p>
+                <h3>Environmentally conscious</h3>
+                <p>Our cleaning products are natural and bio-degradable.</p>
+                <h3>Thorough</h3>
+                <p>We pre-treat heavy traffic areas and rinse cleaned carpets with water.</p>
+              </div> <!-- END .well -->
+            </div> <!-- END .col-sm-12 .col-md-6 .col-lg-6 .col-xl-12 -->
+          </div> <!-- END .row -->
+        </div> <!-- END #content-home -->
+        <div class="container-fluid tab-pane" id="content-specials">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="well">
+                <h2>Five Rooms &ndash; $99</h2>
+                <p>
+                  Get five rooms cleaned for only $99! Take advantage of this special and get up to two hallways
+                  cleaned FREE.
+                </p>
+              </div> <!-- END .well -->
+            </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="well">
+                <h2>VIP Customers</h2>
+                <p>
+                  Ask us about how to become a VIP customer and get discounts on our services!
+                </p>
+              </div> <!-- END .well -->
+            </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
+          </div> <!-- END .row -->
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="well">
+                <h2>Standard Carpet Cleaning Rates</h2>
+                <h3>$25 per room</h3>
+                <p>
+                  We'll clean your rooms for $25 each. Minimum of two rooms per visit. Larger rooms may incur an
+                  additional charge.
+                </p>
+                <h3>Pre-treatment</h3>
+                <p>
+                  We use a unique combination of products to break up stains and dirt in your carpet before we pull
+                  it out with our cleaning equipment. Prices vary based on the area we need to pre-treat.
+                </p>
+                <h3>Scotch Guard</h3>
+                <p>We can protect your carpet from future stains once we've got it clean.</p>
+              </div> <!-- END .well -->
+            </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
+          </div> <!-- END .row -->
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="well">
+                <h2>Wood Floor Cleaning Rates</h2>
+                <h3>79&cent; / sq. ft.</h3>
+                <p>We'll restore the beauty of your hardwood floors for only $0.79 per square foot.</p>
+              </div> <!-- END .well -->
+            </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="well">
+                <h2>Tile &amp; Grout Cleaning Rates</h2>
+                <h3>79&cent; / sq. ft.</h3>
+                <p>Save your hips and your knees. We'll clean your tile floors for $0.79 per square foot.</p>
+              </div> <!-- END .well -->
+            </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
+          </div> <!-- END .row -->
+        </div> <!-- END #content-specials -->
+        <div class="container-fluid tab-pane <?= $tryPost && !$doPost ? 'active' : '' ?>" id="content-contact">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <h2>Get a Quote</h2>
+              <?php
+                /* Do we have any error messages to display? */
+                if (count($errorMessages) > 0) {
+                  /* Yes, we do. Let's start with the wrapper... */
                   ?>
-                    <li for="<?= $fieldName ?>">
-                      <span class="glyphicon glyphicon-remove"></span>
-                      <?= htmlspecialchars($errorMessage) ?>
-                    </li>
+                    <div class="alert alert-danger"><ul>
+                  <?php
+                  /* And loop through the messages. */
+                  foreach($errorMessages as $fieldName => $errorMessage) {
+                    /* The JavaScript in bcc.base.js will handle the click event on these <li> elements. */
+                    ?>
+                      <li for="<?= $fieldName ?>">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        <?= htmlspecialchars($errorMessage) ?>
+                      </li>
+                    <?php
+                  }
+                  /* We're done displaying error messages. Close the wrapper. */
+                  ?>
+                    </ul></div>
                   <?php
                 }
-                /* We're done displaying error messages. Close the wrapper. */
-                ?>
-                  </ul></div>
-                <?php
-              }
-            ?>
-            <form method="post">
-              <div class="form-text">
-                Asterisks (<span class="glyphicon glyphicon-asterisk"></span>) indicate required fields.
-              </div>
-              <fieldset class="form-group">
-                <legend>How should we contact you?</legend>
-                <div class="well">
-                  <?php $isInvalid = isset($errorMessages["customer_name"]); ?>
-                  <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
-                    <label class="control-label" for="customer_name">
-                      <span class="glyphicon glyphicon-asterisk"></span>
-                      Name
-                    </label>
-                    <input type="text" class="form-control" id="customer_name" maxlength="1024" name="customer_name"
-                           <?php
-                            if (isset($_POST["customer_name"]))
-                              echo "value=\"" . htmlspecialchars($_POST["customer_name"]) . "\"";
-                           ?> />
-                    <?php
-                    /* Did the customer_name field fail validation? */
-                    if ($isInvalid && ($errorMessages["customer_name"] != "")) {
-                      /* Yes, the customer_name field failed validation. Display its error message. */
-                      ?>
-                        <div class="form-control-feedback">
-                          <span class="glyphicon glyphicon-remove"></span>
-                          <?= htmlspecialchars($errorMessages["customer_name"]) ?>
-                        </div>
+              ?>
+              <form action="#" method="post">
+                <div class="form-text">
+                  Asterisks (<span class="glyphicon glyphicon-asterisk"></span>) indicate required fields.
+                </div>
+                <fieldset class="form-group">
+                  <legend>How should we contact you?</legend>
+                  <div class="well">
+                    <?php $isInvalid = isset($errorMessages["customer_name"]); ?>
+                    <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
+                      <label class="control-label" for="customer_name">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                        Name
+                      </label>
+                      <input type="text" class="form-control" id="customer_name" maxlength="1024"
+                             name="customer_name"
+                             <?php
+                              if (isset($_POST["customer_name"]))
+                                echo "value=\"" . htmlspecialchars($_POST["customer_name"]) . "\"";
+                             ?> />
                       <?php
-                    }
-                    ?>
-                  </div> <!-- END .form-group -->
-                  <?php $isInvalid = isset($errorMessages["customer_email"]); ?>
-                  <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
-                    <label class="control-label" for="customer_email">Email</label>
-                    <input type="email" class="form-control" id="customer_email" maxlength="255" name="customer_email" 
-                           <?php
-                            if (isset($_POST["customer_email"]))
-                              echo "value=\"" . htmlspecialchars($_POST["customer_email"]) . "\"";
-                           ?> />
-                    <?php
-                    /* Did the customer_email field fail validation? */
-                    if ($isInvalid && ($errorMessages["customer_email"] != "")) {
-                      /* Yes, the customer_email field failed validation. Display its error message. */
+                      /* Did the customer_name field fail validation? */
+                      if ($isInvalid && ($errorMessages["customer_name"] != "")) {
+                        /* Yes, the customer_name field failed validation. Display its error message. */
+                        ?>
+                          <div class="form-control-feedback">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <?= htmlspecialchars($errorMessages["customer_name"]) ?>
+                          </div>
+                        <?php
+                      }
                       ?>
-                        <div class="form-control-feedback">
-                          <span class="glyphicon glyphicon-remove"></span>
-                          <?= htmlspecialchars($errorMessages["customer_email"]) ?>
-                        </div>
+                    </div> <!-- END .form-group -->
+                    <?php $isInvalid = isset($errorMessages["customer_email"]); ?>
+                    <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
+                      <label class="control-label" for="customer_email">Email</label>
+                      <input type="email" class="form-control" id="customer_email" maxlength="255"
+                             name="customer_email"
+                             <?php
+                              if (isset($_POST["customer_email"]))
+                                echo "value=\"" . htmlspecialchars($_POST["customer_email"]) . "\"";
+                             ?> />
                       <?php
-                    }
-                    ?>
-                  </div> <!-- END .form-group -->
-                  <?php $isInvalid = isset($errorMessages["customer_phone"]); ?>
-                  <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
-                    <label class="control-label" for="customer_phone">Phone</label>
-                    <input type="tel" class="form-control" id="customer_phone" maxlength="50" name="customer_phone"
-                           <?php
-                            if (isset($_POST["customer_phone"]))
-                              echo "value=\"" . htmlspecialchars($_POST["customer_phone"]) . "\"";
-                           ?> />
-                    <?php
-                    /* Did the customer_phone field fail validation? */
-                    if ($isInvalid && ($errorMessages["customer_phone"] != "")) {
-                      /* Yes, the customer_phone field failed validation. Display its error message. */
+                      /* Did the customer_email field fail validation? */
+                      if ($isInvalid && ($errorMessages["customer_email"] != "")) {
+                        /* Yes, the customer_email field failed validation. Display its error message. */
+                        ?>
+                          <div class="form-control-feedback">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <?= htmlspecialchars($errorMessages["customer_email"]) ?>
+                          </div>
+                        <?php
+                      }
                       ?>
-                        <div class="form-control-feedback">
-                          <span class="glyphicon glyphicon-remove"></span>
-                          <?= htmlspecialchars($errorMessages["customer_phone"]) ?>
-                        </div>
+                    </div> <!-- END .form-group -->
+                    <?php $isInvalid = isset($errorMessages["customer_phone"]); ?>
+                    <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
+                      <label class="control-label" for="customer_phone">Phone</label>
+                      <input type="tel" class="form-control" id="customer_phone" maxlength="50" name="customer_phone"
+                             <?php
+                              if (isset($_POST["customer_phone"]))
+                                echo "value=\"" . htmlspecialchars($_POST["customer_phone"]) . "\"";
+                             ?> />
                       <?php
-                    }
-                    ?>
-                  </div> <!-- END .form-group -->
-                  <?php $isInvalid = isset($errorMessages["customer_prefer"]); ?>
-                  <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
-                    <label class="control-label">Preferred method of contact</label>
-                    <div class="form-check <?= $isInvalid ? 'has-error' : '' ?>">
-                      <label class="control-label form-check-label" for="customer_prefer_email">
+                      /* Did the customer_phone field fail validation? */
+                      if ($isInvalid && ($errorMessages["customer_phone"] != "")) {
+                        /* Yes, the customer_phone field failed validation. Display its error message. */
+                        ?>
+                          <div class="form-control-feedback">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <?= htmlspecialchars($errorMessages["customer_phone"]) ?>
+                          </div>
+                        <?php
+                      }
+                      ?>
+                    </div> <!-- END .form-group -->
+                    <?php $isInvalid = isset($errorMessages["customer_prefer"]); ?>
+                    <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
+                      <div class="form-text">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                        Preferred method of contact
+                      </div>
+                      <div class="form-check <?= $isInvalid ? 'has-error' : '' ?>">
                         <input type="radio" id="customer_prefer_email" name="customer_prefer" value="email"
                                <?php 
                                 if (isset($_POST["customer_prefer"]) && ($_POST["customer_prefer"] == "email"))
                                   echo 'checked="checked"';
                                ?> />
-                        Email
-                      </label>
-                    </div> <!-- END .form-check -->
-                    <div class="form-check <?= $isInvalid ? 'has-error' : '' ?>">
-                      <label class="control-label form-check-label" for="customer_prefer_phone">
+                        <label class="control-label form-check-label" for="customer_prefer_email">Email</label>
+                      </div> <!-- END .form-check -->
+                      <div class="form-check <?= $isInvalid ? 'has-error' : '' ?>">
                         <input type="radio" id="customer_prefer_phone" name="customer_prefer" value="phone"
                                <?php
                                 if (isset($_POST["customer_prefer"]) && ($_POST["customer_prefer"] == "phone"))
                                   echo 'checked="checked"';
                                ?> />
-                        Phone
+                        <label class="control-label form-check-label" for="customer_prefer_phone">Phone</label>
+                      </div> <!-- END .form-check -->
+                      <?php
+                      /* Did the customer_prefer field fail validation? */
+                      if ($isInvalid && ($errorMessages["customer_prefer"] != "")) {
+                        /* Yes, the customer_prefer field failed validation. Display its error message. */
+                        ?>
+                          <div class="form-control-feedback">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <?= htmlspecialchars($errorMessages["customer_prefer"]) ?>
+                          </div>
+                        <?php
+                      }
+                      ?>
+                    </div> <!-- END .form-group -->
+                  </div> <!-- END .well -->
+                </fieldset>
+                <fieldset class="form-group">
+                  <legend>Where does the work need to be done?</legend>
+                  <div class="well">
+                    <?php $isInvalid = isset($errorMessages["address_street1"]); ?>
+                    <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
+                      <label class="control-label" for="address_street1">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                        Street (line 1)
                       </label>
-                    </div> <!-- END .form-check -->
-                    <?php
-                    /* Did the customer_prefer field fail validation? */
-                    if ($isInvalid && ($errorMessages["customer_prefer"] != "")) {
-                      /* Yes, the customer_prefer field failed validation. Display its error message. */
-                      ?>
-                        <div class="form-control-feedback">
-                          <span class="glyphicon glyphicon-remove"></span>
-                          <?= htmlspecialchars($errorMessages["customer_prefer"]) ?>
-                        </div>
-                      <?php
-                    }
-                    ?>
-                  </div> <!-- END .form-group -->
-                </div> <!-- END .well -->
-              </fieldset>
-              <fieldset class="form-group">
-                <legend>Where does the work need to be done?</legend>
-                <div class="well">
-                  <?php $isInvalid = isset($errorMessages["address_street1"]); ?>
-                  <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
-                    <label class="control-label" for="address_street1">
-                      <span class="glyphicon glyphicon-asterisk"></span>
-                      Street (line 1)
-                    </label>
-                    <input type="text" class="form-control" id="address_street1" maxlength="255" name="address_street1"
-                           <?php
-                            if (isset($_POST["address_street1"]))
-                              echo 'value="' . htmlspecialchars($_POST['address_street1']) . '"';
-                           ?> />
-                    <?php
-                    /* Did the address_street1 field fail validation? */
-                    if ($isInvalid && ($errorMessages["address_street1"] != "")) {
-                      /* Yes, the address_street1 field failed validation. Display its error message. */
-                      ?>
-                        <div class="form-control-feedback">
-                          <span class="glyphicon glyphicon-remove"></span>
-                          <?= htmlspecialchars($errorMessages["address_street1"]) ?>
-                        </div>
-                      <?php
-                    }
-                    ?>
-                  </div> <!-- END .form-group -->
-                  <?php $isInvalid = isset($errorMessages["address_street2"]); ?>
-                  <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
-                    <label class="control-label" for="address_street2">Street (line 2)</label>
-                    <input type="text" class="form-control" id="address_street2" maxlength="255" name="address_street2"
-                           <?php
-                            if (isset($_POST["address_street2"]))
-                              echo 'value="' . htmlspecialchars($_POST['address_street2']) . '"';
-                           ?>
-                           />
-                    <?php
-                    /* Did the address_street2 field fail validation? */
-                    if ($isInvalid && ($errorMessages["address_street2"] != "")) {
-                      /* Yes, the address_street2 field failed validation. Display its error message. */
-                      ?>
-                        <div class="form-control-feedback">
-                          <span class="glyphicon glyphicon-remove"></span>
-                          <?= htmlspecialchars($errorMessages["address_street2"]) ?>
-                        </div>
-                      <?php
-                    }
-                    ?>
-                  </div> <!-- END .form-group -->
-                  <?php $isInvalid = isset($errorMessages["address_city"]); ?>
-                  <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
-                    <label class="control-label" for="address_city">
-                      <span class="glyphicon glyphicon-asterisk"></span>
-                      City
-                    </label>
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="address_city" maxlength="255" name="address_city"
+                      <input type="text" class="form-control" id="address_street1" maxlength="255"
+                             name="address_street1"
                              <?php
-                              if (isset($_POST["address_city"]))
-                                echo 'value="' . htmlspecialchars($_POST["address_city"]) . '"';
+                              if (isset($_POST["address_street1"]))
+                                echo 'value="' . htmlspecialchars($_POST['address_street1']) . '"';
+                             ?> />
+                      <?php
+                      /* Did the address_street1 field fail validation? */
+                      if ($isInvalid && ($errorMessages["address_street1"] != "")) {
+                        /* Yes, the address_street1 field failed validation. Display its error message. */
+                        ?>
+                          <div class="form-control-feedback">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <?= htmlspecialchars($errorMessages["address_street1"]) ?>
+                          </div>
+                        <?php
+                      }
+                      ?>
+                    </div> <!-- END .form-group -->
+                    <?php $isInvalid = isset($errorMessages["address_street2"]); ?>
+                    <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
+                      <label class="control-label" for="address_street2">Street (line 2)</label>
+                      <input type="text" class="form-control" id="address_street2" maxlength="255"
+                             name="address_street2"
+                             <?php
+                              if (isset($_POST["address_street2"]))
+                                echo 'value="' . htmlspecialchars($_POST['address_street2']) . '"';
                              ?>
                              />
-                      <div class="input-group-addon">, Texas</div>
-                    </div>
-                    <?php
-                    /* Did the address_city field fail validation? */
-                    if ($isInvalid && ($errorMessages["address_city"] != "")) {
-                      /* Yes, the address_city field failed validation. Display its error message. */
-                      ?>
-                        <div class="form-control-feedback">
-                          <span class="glyphicon glyphicon-remove"></span>
-                          <?= htmlspecialchars($errorMessages["address_city"]) ?>
-                        </div>
                       <?php
-                    }
-                    ?>
-                  </div> <!-- END .form-group -->
-                  <?php $isInvalid = isset($errorMessages["address_zip"]); ?>
-                  <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
-                    <label class="control-label" for="address_zip">
-                      <span class="glyphicon glyphicon-asterisk"></span>
-                      ZIP Code
-                    </label>
-                    <input type="text" class="form-control" id="address_zip" maxlength="10" name="address_zip"
-                           <?php
-                            if (isset($_POST["address_zip"]))
-                              echo 'value="' . htmlspecialchars($_POST["address_zip"]) . '"';
-                           ?>
-                           />
-                    <?php
-                    /* Did the address_zip field fail validation? */
-                    if ($isInvalid && ($errorMessages["address_zip"] != "")) {
-                      /* Yes, the address_zip field failed validation. Display its error message. */
+                      /* Did the address_street2 field fail validation? */
+                      if ($isInvalid && ($errorMessages["address_street2"] != "")) {
+                        /* Yes, the address_street2 field failed validation. Display its error message. */
+                        ?>
+                          <div class="form-control-feedback">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <?= htmlspecialchars($errorMessages["address_street2"]) ?>
+                          </div>
+                        <?php
+                      }
                       ?>
-                        <div class="form-control-feedback">
-                          <span class="glyphicon glyphicon-remove"></span>
-                          <?= htmlspecialchars($errorMessages["address_zip"]) ?>
-                        </div>
+                    </div> <!-- END .form-group -->
+                    <?php $isInvalid = isset($errorMessages["address_city"]); ?>
+                    <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
+                      <div class="input-group">
+                        <label class="control-label" for="address_city">
+                          <span class="glyphicon glyphicon-asterisk"></span>
+                          City
+                        </label>
+                        <input type="text" class="form-control" id="address_city" maxlength="255" name="address_city"
+                               <?php
+                                if (isset($_POST["address_city"]))
+                                  echo 'value="' . htmlspecialchars($_POST["address_city"]) . '"';
+                               ?>
+                               />
+                        <div class="input-group-addon">, Texas</div>
+                      </div>
                       <?php
-                    }
-                    ?>
-                  </div> <!-- END .form-group -->
-                </div> <!-- END .well -->
-              </fieldset>
-              <fieldset class="form-group">
-                <legend>What work would you like quoted?</legend>
-                <div class="well">
-                  <div class="panel-group" aria-multiselectable="true">
-                    <?php
-                    /* Loop through the groups in $fieldsServices. */
-                    foreach ($fieldsServices as $fieldGroup => $infoGroup) {
-                      /* Start by displaying the header. Follow that by opening the panel-body <div>. */
+                      /* Did the address_city field fail validation? */
+                      if ($isInvalid && ($errorMessages["address_city"] != "")) {
+                        /* Yes, the address_city field failed validation. Display its error message. */
+                        ?>
+                          <div class="form-control-feedback">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <?= htmlspecialchars($errorMessages["address_city"]) ?>
+                          </div>
+                        <?php
+                      }
                       ?>
-                        <div class="panel">
-                          <div class="panel-heading" id="<?= $fieldGroup . '_hdr' ?>">
-                            <a href="#<?= $fieldGroup ?>" data-toggle="collapse"
-                               aria-expanded="<?= isFieldsetEmpty($fieldGroup) ? 'false' : 'true' ?>"
-                               aria-controls="<?= $fieldGroup ?>">
-                              <h3><?= htmlspecialchars($infoGroup["header"]) ?></h3>
-                            </a>
-                          </div> <!-- END #<?= $fieldGroup . '_hdr' ?> -->
-                          <div class="panel-collapse collapse <?= isFieldsetEmpty($fieldGroup) ? '' : 'in' ?>"
-                               id="<?= $fieldGroup ?>" aria-labelledby="<?= $fieldGroup . '_hdr' ?>">
-                            <div class="panel-body">
-                              <?php
-                              /* Loop through the fields within this group. */
-                              foreach($infoGroup["fields"] as $nameField => $infoField) {
-                                /* Did this field fail validation? */
-                                $isInvalid = isset($errorMessages[$nameField]);
-                                ?>
-                                <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
-                                  <?php
-                                  /* Different types of fields get displayed different ways. Which type is this? */
-                                  switch ($infoField["type"]) {
-                                    case "checkbox":
-                                      /* If a checkbox, display the input, then the label. */
-                                      ?>
-                                      <div class="form-check <?= $isInvalid ? 'has-error' : '' ?>">
-                                        <input type="<?= $infoField["type"] ?>" id="<?= $nameField ?>"
-                                               name="<?= $nameField ?>" value="1"
-                                               <?php
-                                                if (isset($_POST[$nameField]) && ($_POST[$nameField] == 1))
-                                                  echo 'checked="checked"'
-                                               ?> />
-                                        <label class="control-label" for="<?= $nameField ?>">
-                                          <?= htmlspecialchars($infoField["label"]) ?>
-                                        </label>
-                                      </div> <!-- END .form-check -->
-                                      <?php
-                                      break;
-                                    case "number":
-                                      /* If a number, display the label, then the input. */
-                                      ?>
-                                        <label class="control-label" for="<?= $nameField ?>">
-                                          <?= htmlspecialchars($infoField["label"]) ?>
-                                        </label>
-                                        <input class="form-control" type="<?= $infoField["type"] ?>"
-                                               id="<?= $nameField ?>" name="<?= $nameField ?>"
-                                               <?php
-                                                if (isset($_POST[$nameField]) && ($_POST[$nameField] != ""))
-                                                  echo "value=\"{htmlspecialchars($_POST[$nameField])}\" ";
-                                                if (isset($infoField["hint"]) && ($infoField["hint"] != "")) {
-                                                  echo "aria-describedby=\"{$nameField}_desc\" ";
-                                                }
-                                               ?>
-                                               />
-                                      <?php
-                                      break;
-                                  }
-                                  /* Is a hint defined for this field? */
-                                  if (isset($infoField["hint"]) && ($infoField["hint"] != "")) {
-                                    /* Yes, a hint is defined for this field. Display it. */
-                                    ?>
-                                    <small class="form-text text-muted" id="<?= $nameField ?>_desc">
-                                      <?= htmlspecialchars($infoField["hint"]) ?>
-                                    </small>
-                                    <?php
-                                  }
-                                  /* Did this field fail validation? */
-                                  if ($isInvalid && ($errorMessages[$nameField] != "")) {
-                                    /* Yes, this field failed validation. Display its error message. */
-                                    ?>
-                                      <div class="form-control-feedback">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                        <?= htmlspecialchars($errorMessages[$nameField]) ?>
-                                      </div> <!-- END .form-control-feedback -->
-                                    <?php
-                                  }
-                                  ?>
-                                </div> <!-- END .form-group -->
-                                <?php
-                              }
-                              ?>
-                            </div> <!-- END .panel-body -->
-                          </div> <!-- END #<?= $fieldGroup ?> -->
-                        </div> <!-- END .panel -->
+                    </div> <!-- END .form-group -->
+                    <?php $isInvalid = isset($errorMessages["address_zip"]); ?>
+                    <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
+                      <label class="control-label" for="address_zip">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                        ZIP Code
+                      </label>
+                      <input type="text" class="form-control" id="address_zip" maxlength="10" name="address_zip"
+                             <?php
+                              if (isset($_POST["address_zip"]))
+                                echo 'value="' . htmlspecialchars($_POST["address_zip"]) . '"';
+                             ?>
+                             />
                       <?php
-                    }
-                    ?>
-                  </div> <!-- END .panel-group -->
-                </div> <!-- END .well -->
-              </fieldset>
-              <fieldset class="form-group">
-                <legend>Anything else you think would be helpful?</legend>
-                <div class="well">
-                  <div class="form-group">
-                    <label class="control-label" for="comment_text">Additional comments</label>
-                    <textarea class="form-control" id="comment_text" name="comment_text"
-                    ><?php
-                      if (isset($_POST["comment_text"]))
-                        echo htmlspecialchars($_POST["comment_text"]);
-                    ?></textarea>
-                  </div>
-                </div> <!-- END .well -->
-                <button type="submit" class="btn btn-primary" name="bcc_quote_submit" value="1">Get a Quote</button>
-              </fieldset>
-            </form>
-          </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
-        </div> <!-- END .row -->
-      </div> <!-- END #content-contact -->
-      <?php
-      if ($doPost === true) {
-        ?>
-        <div class="container-fluid tab-pane <?= $doPost ? 'active' : '' ?>" id="content-thanks">
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <div class="well">
-                <h2>Thank you!</h2>
-                <?php
-                /* Start caching the output so we can store it in a variable. */
-                ob_start()
-                ?>
-                <fieldset class="form-group">
-                  <h3>Contact Info and Location</h3>
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Name</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9"><?= htmlspecialchars($_POST["customer_name"]) ?></div>
-                  </div> <!-- END .row -->
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Email</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9"><?= htmlspecialchars($_POST["customer_email"]) ?></div>
-                  </div> <!-- END .row -->
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Phone</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9"><?= htmlspecialchars($_POST["customer_phone"]) ?></div>
-                  </div> <!-- END .row -->
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Preference</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?=
-                        $_POST["customer_prefer"] == "email"
-                        ? 'Email'
-                        : ($_POST["customer_prefer"] == "phone" ? 'Phone' : 'N / A')
+                      /* Did the address_zip field fail validation? */
+                      if ($isInvalid && ($errorMessages["address_zip"] != "")) {
+                        /* Yes, the address_zip field failed validation. Display its error message. */
+                        ?>
+                          <div class="form-control-feedback">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <?= htmlspecialchars($errorMessages["address_zip"]) ?>
+                          </div>
+                        <?php
+                      }
                       ?>
-                    </div> <!-- END .col-xs-6 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Service Location</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["address_street1"]) ?><br />
-                      <?= $_POST["address_street2"] != '' ? htmlspecialchars($_POST["address_street2"]) . '<br />' : '' ?>
-                      <?= htmlspecialchars($_POST["address_city"]) ?>, TX <?= htmlspecialchars($_POST["address_zip"]) ?>
-                    </div>
-                  </div> <!-- END .row -->
+                    </div> <!-- END .form-group -->
+                  </div> <!-- END .well -->
                 </fieldset>
-                <?php
-                /* Only show each of the following sections if form input was provided for them. */
-                if (!isFieldsetEmpty("carpet_cleaning")) { ?>
-                  <h3>Carpet Cleaning</h3>
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Rooms</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["carpet_cleaning_count_rooms"]) ?>
-                    </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Hallways</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["carpet_cleaning_count_halls"]) ?>
-                    </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Stairways</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["carpet_cleaning_count_stairs"]) ?>
-                    </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Scotch Guard</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["carpet_cleaning_count_protect"]) ?>
-                    </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                <?php }
-                if (!isFieldsetEmpty("wood_cleaning")) { ?>
-                  <h3>Wood Floor Cleaning</h3>
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Estimated area</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["wood_cleaning_area"]) ?> sq. ft.
-                    </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                <?php }
-                if (!isFieldsetEmpty("tile_cleaning")) { ?>
-                  <h3>Tile &amp; Grout Cleaning</h3>
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Estimated area</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["tile_cleaning_area"]) ?> sq. ft.
-                    </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                <?php }
-                if (!isFieldsetEmpty("upholstery")) { ?>
-                  <h3>Upholstery Cleaning</h3>
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Large items</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["upholstery_count_lg"]) ?>
-                    </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Small items</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["upholstery_count_sm"]) ?>
-                    </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                <?php }
-                if (!isFieldsetEmpty("carpet_repair")) { ?>
-                  <h3>Carpet Repair &amp; Dying</h3>
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Carpet repair</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["carpet_repair_count_patches"]) ?> patches
-                    </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                  <div class="row">
-                    <?php
-                      $haveExtra = isset($_POST["carpet_repair_have_extra"]) && ($_POST["carpet_repair_have_extra"] == 1);
-                    ?>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                      I <?= $haveExtra ? '' : 'do not' ?> have extra carpet to use for patches.
-                    </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
-                  </div> <!-- END .row -->
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Carpet dying</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["carpet_repair_count_dye"]) ?> rooms
-                    </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                <?php }
-                if (!isFieldsetEmpty("air_duct")) { ?>
-                  <h3>Air Duct Cleaning</h3>
-                  <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Vents</div>
-                    <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                      <?= htmlspecialchars($_POST["air_duct_count_vents"]) ?>
-                    </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
-                  </div> <!-- END .row -->
-                <?php }
-                if (isset($_POST["comment_text"]) && ($_POST["comment_text"] != "")) { ?>
-                  <h3>Additional Comments</h3>
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                      <p><?= preg_replace("/\\n+/", "</p></p>", htmlspecialchars($_POST["comment_text"])) ?></p>
+                <fieldset class="form-group">
+                  <legend>What work would you like quoted?</legend>
+                  <div class="well">
+                    <div class="panel-group" aria-multiselectable="true">
+                      <?php
+                      /* Loop through the groups in $fieldsServices. */
+                      foreach ($fieldsServices as $fieldGroup => $infoGroup) {
+                        /* Start by displaying the header. Follow that by opening the panel-body <div>. */
+                        ?>
+                          <div class="panel">
+                            <div class="panel-heading" id="<?= $fieldGroup . '_hdr' ?>">
+                              <a href="#<?= $fieldGroup ?>" data-toggle="collapse"
+                                 aria-expanded="<?= isFieldsetEmpty($fieldGroup) ? 'false' : 'true' ?>"
+                                 aria-controls="<?= $fieldGroup ?>">
+                                <h3><?= htmlspecialchars($infoGroup["header"]) ?></h3>
+                              </a>
+                            </div> <!-- END #<?= $fieldGroup . '_hdr' ?> -->
+                            <div class="panel-collapse collapse <?= isFieldsetEmpty($fieldGroup) ? '' : 'in' ?>"
+                                 id="<?= $fieldGroup ?>" aria-labelledby="<?= $fieldGroup . '_hdr' ?>">
+                              <div class="panel-body">
+                                <?php
+                                /* Loop through the fields within this group. */
+                                foreach($infoGroup["fields"] as $nameField => $infoField) {
+                                  /* Did this field fail validation? */
+                                  $isInvalid = isset($errorMessages[$nameField]);
+                                  ?>
+                                  <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
+                                    <?php
+                                    /* Different types of fields get displayed different ways. Which type is this? */
+                                    switch ($infoField["type"]) {
+                                      case "checkbox":
+                                        /* If a checkbox, display the input, then the label. */
+                                        ?>
+                                        <div class="form-check <?= $isInvalid ? 'has-error' : '' ?>">
+                                          <input type="<?= $infoField["type"] ?>" id="<?= $nameField ?>"
+                                                 name="<?= $nameField ?>" value="1"
+                                                 <?php
+                                                  if (isset($_POST[$nameField]) && ($_POST[$nameField] == 1))
+                                                    echo 'checked="checked"'
+                                                 ?> />
+                                          <label class="control-label" for="<?= $nameField ?>">
+                                            <?= htmlspecialchars($infoField["label"]) ?>
+                                          </label>
+                                        </div> <!-- END .form-check -->
+                                        <?php
+                                        break;
+                                      case "number":
+                                        /* If a number, display the label, then the input. */
+                                        ?>
+                                          <label class="control-label" for="<?= $nameField ?>">
+                                            <?= htmlspecialchars($infoField["label"]) ?>
+                                          </label>
+                                          <input class="form-control" type="<?= $infoField["type"] ?>"
+                                                 id="<?= $nameField ?>" name="<?= $nameField ?>"
+                                                 <?php
+                                                  if (isset($_POST[$nameField]) && ($_POST[$nameField] != ""))
+                                                    echo "value=\"{htmlspecialchars($_POST[$nameField])}\" ";
+                                                  if (isset($infoField["hint"]) && ($infoField["hint"] != "")) {
+                                                    echo "aria-describedby=\"{$nameField}_desc\" ";
+                                                  }
+                                                 ?>
+                                                 />
+                                        <?php
+                                        break;
+                                    }
+                                    /* Is a hint defined for this field? */
+                                    if (isset($infoField["hint"]) && ($infoField["hint"] != "")) {
+                                      /* Yes, a hint is defined for this field. Display it. */
+                                      ?>
+                                      <div class="form-text text-muted" id="<?= $nameField ?>_desc">
+                                        <?= htmlspecialchars($infoField["hint"]) ?>
+                                      </div>
+                                      <?php
+                                    }
+                                    /* Did this field fail validation? */
+                                    if ($isInvalid && ($errorMessages[$nameField] != "")) {
+                                      /* Yes, this field failed validation. Display its error message. */
+                                      ?>
+                                        <div class="form-control-feedback">
+                                          <span class="glyphicon glyphicon-remove"></span>
+                                          <?= htmlspecialchars($errorMessages[$nameField]) ?>
+                                        </div> <!-- END .form-control-feedback -->
+                                      <?php
+                                    }
+                                    ?>
+                                  </div> <!-- END .form-group -->
+                                  <?php
+                                }
+                                ?>
+                              </div> <!-- END .panel-body -->
+                            </div> <!-- END #<?= $fieldGroup ?> -->
+                          </div> <!-- END .panel -->
+                        <?php
+                      }
+                      ?>
+                    </div> <!-- END .panel-group -->
+                  </div> <!-- END .well -->
+                </fieldset>
+                <fieldset class="form-group">
+                  <legend>Anything else you think would be helpful?</legend>
+                  <div class="well">
+                    <div class="form-group">
+                      <label class="control-label" for="comment_text">Additional comments</label>
+                      <textarea class="form-control" id="comment_text" name="comment_text" maxlength="16000"
+                      ><?php
+                        if (isset($_POST["comment_text"]))
+                          echo htmlspecialchars($_POST["comment_text"]);
+                      ?></textarea>
                     </div>
-                  </div>
-                <?php }
-                /*
-                 * We've got the content of the quote confirmation. Let's store it in a variable for easy inclusion
-                 * in an email.
-                 */
-                $emailBody = ob_get_contents();
-                /* Define the values we need for sending out an email. */
-                $email = array(
-                  "headers" => array(
-                    "From" => $emailSettings["from"],
-                    "Reply-To" => $emailSettings["replyTo"],
-                    "MIME-Version" => "1.0",
-                    "Content-Type" => "text/html; charset=UTF-8"
-                  ),
-                  "message" => $emailBody,
-                  "subject" => $emailSettings["subject"],
-                  "to" => $emailSettings["to"]
-                );
-                try {
-                  /* Try creating the Mail object. */
-                  $smtp = Mail::factory(
-                    "smtp",
-                    array(
-                      "auth" => false,
-                      "host" => $emailSettings["host"],
-                      "port" => $emailSettings["port"],
-                      "username" => $emailSettings["username"],
-                      "password" => $emailSettings["password"]
-                    )
-                  );
-                  /* Try sending the email out. */
-                  $mail = $smtp->send($email["to"], $email["headers"], $email["message"]);
-                } catch (Exception $e) {
-                  /* Something failed. Dump the exception for debugging purposes. */
-                  var_dump($e);
-                }
-                /* We've sent out the cached HTML via email. Now we can send it to the client. */
-                ob_flush();
-                ?>
-              </div> <!-- END .well -->
+                  </div> <!-- END .well -->
+                  <button type="submit" class="btn btn-primary" name="bcc_quote_submit" value="1">
+                    Get a Quote
+                  </button>
+                </fieldset>
+              </form>
             </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
           </div> <!-- END .row -->
-        </div> <!-- END #content-thanks -->
-      <?php
-      }
-      ?>
-    </div> <!-- END container tab-content -->
+        </div> <!-- END #content-contact -->
+        <?php
+        if ($doPost === true) {
+          ?>
+          <div class="container-fluid tab-pane <?= $doPost ? 'active' : '' ?>" id="content-thanks">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="well">
+                  <h2>Thank you!</h2>
+                  <?php
+                  /* Start caching the output so we can store it in a variable. */
+                  ob_start()
+                  ?>
+                  <fieldset class="form-group">
+                    <h3>Contact Info and Location</h3>
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Name</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["customer_name"]) ?>
+                      </div>
+                    </div> <!-- END .row -->
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Email</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["customer_email"]) ?>
+                      </div>
+                    </div> <!-- END .row -->
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Phone</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["customer_phone"]) ?>
+                      </div>
+                    </div> <!-- END .row -->
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Preference</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?=
+                          $_POST["customer_prefer"] == "email"
+                          ? 'Email'
+                          : ($_POST["customer_prefer"] == "phone" ? 'Phone' : 'N / A')
+                        ?>
+                      </div> <!-- END .col-xs-6 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Service Location</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["address_street1"]) ?><br />
+                        <?=
+                          $_POST["address_street2"] != ''
+                          ? htmlspecialchars($_POST["address_street2"]) . '<br />'
+                          : ''
+                        ?>
+                        <?= htmlspecialchars($_POST["address_city"]) ?>, TX
+                        <?= htmlspecialchars($_POST["address_zip"]) ?>
+                      </div>
+                    </div> <!-- END .row -->
+                  </fieldset>
+                  <?php
+                  /* Only show each of the following sections if form input was provided for them. */
+                  if (!isFieldsetEmpty("carpet_cleaning")) { ?>
+                    <h3>Carpet Cleaning</h3>
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Rooms</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["carpet_cleaning_count_rooms"]) ?>
+                      </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Hallways</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["carpet_cleaning_count_halls"]) ?>
+                      </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Stairways</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["carpet_cleaning_count_stairs"]) ?>
+                      </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Scotch Guard</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["carpet_cleaning_count_protect"]) ?>
+                      </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                  <?php }
+                  if (!isFieldsetEmpty("wood_cleaning")) { ?>
+                    <h3>Wood Floor Cleaning</h3>
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Estimated area</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["wood_cleaning_area"]) ?> sq. ft.
+                      </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                  <?php }
+                  if (!isFieldsetEmpty("tile_cleaning")) { ?>
+                    <h3>Tile &amp; Grout Cleaning</h3>
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Estimated area</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["tile_cleaning_area"]) ?> sq. ft.
+                      </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                  <?php }
+                  if (!isFieldsetEmpty("upholstery")) { ?>
+                    <h3>Upholstery Cleaning</h3>
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Large items</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["upholstery_count_lg"]) ?>
+                      </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Small items</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["upholstery_count_sm"]) ?>
+                      </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                  <?php }
+                  if (!isFieldsetEmpty("carpet_repair")) { ?>
+                    <h3>Carpet Repair &amp; Dying</h3>
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Carpet repair</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["carpet_repair_count_patches"]) ?> patches
+                      </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                    <div class="row">
+                      <?php
+                        $haveExtra = isset($_POST["carpet_repair_have_extra"])
+                          && ($_POST["carpet_repair_have_extra"] == 1);
+                      ?>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        I <?= $haveExtra ? '' : 'do not' ?> have extra carpet to use for patches.
+                      </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
+                    </div> <!-- END .row -->
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Carpet dying</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["carpet_repair_count_dye"]) ?> rooms
+                      </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                  <?php }
+                  if (!isFieldsetEmpty("air_duct")) { ?>
+                    <h3>Air Duct Cleaning</h3>
+                    <div class="row">
+                      <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Vents</div>
+                      <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                        <?= htmlspecialchars($_POST["air_duct_count_vents"]) ?>
+                      </div> <!-- END .col-xs-8 .col-sm-9 .col-md-9 .col-lg-9 -->
+                    </div> <!-- END .row -->
+                  <?php }
+                  if (isset($_POST["comment_text"]) && ($_POST["comment_text"] != "")) { ?>
+                    <h3>Additional Comments</h3>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <p><?= preg_replace("/\\n+/", "</p></p>", htmlspecialchars($_POST["comment_text"])) ?></p>
+                      </div>
+                    </div>
+                  <?php }
+                  /*
+                   * We've got the content of the quote confirmation. Let's store it in a variable for easy inclusion
+                   * in an email.
+                   */
+                  $emailBody = ob_get_contents();
+                  /* Define the values we need for sending out an email. */
+                  $email = array(
+                    "headers" => array(
+                      "From" => $emailSettings["from"],
+                      "Reply-To" => $emailSettings["replyTo"],
+                      "MIME-Version" => "1.0",
+                      "Content-Type" => "text/html; charset=UTF-8"
+                    ),
+                    "message" => $emailBody,
+                    "subject" => $emailSettings["subject"],
+                    "to" => $emailSettings["to"]
+                  );
+                  try {
+                    /* Try creating the Mail object. */
+                    $smtp = Mail::factory(
+                      "smtp",
+                      array(
+                        "auth" => false,
+                        "host" => $emailSettings["host"],
+                        "port" => $emailSettings["port"],
+                        "username" => $emailSettings["username"],
+                        "password" => $emailSettings["password"]
+                      )
+                    );
+                    /* Try sending the email out. */
+                    $mail = $smtp->send($email["to"], $email["headers"], $email["message"]);
+                  } catch (Exception $e) {
+                    /* Something failed. Dump the exception for debugging purposes. */
+                    var_dump($e);
+                  }
+                  /* We've sent out the cached HTML via email. Now we can send it to the client. */
+                  ob_flush();
+                  ?>
+                </div> <!-- END .well -->
+              </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
+            </div> <!-- END .row -->
+          </div> <!-- END #content-thanks -->
+        <?php
+        }
+        ?>
+      </div> <!-- END container tab-content -->
+    </main>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bcc.base.js"></script>

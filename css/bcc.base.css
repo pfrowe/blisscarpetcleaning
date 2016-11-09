@@ -37,6 +37,9 @@
   top: 0;
   z-index: -1;
 }
+.glyphicon-asterisk {
+  color: maroon;
+}
 .has-feedback label ~ .form-control-feedback {
   display: block;
   height: auto;
@@ -52,6 +55,9 @@
   max-width: 750px;
   margin-left: auto;
   margin-right: auto;
+}
+.input-group label {
+  display: table-row;
 }
 .navbar {
   font-family: Chango, cursive;
@@ -211,9 +217,6 @@ table.pull-right {
   }
   .navbar-contact {
     padding-left: 15px;
-  }
-  .navbar-inverse .navbar-collapse {
-    margin-top: 6rem;
   }
 }
 @media (max-width: 767px) and (orientation: portrait) {
