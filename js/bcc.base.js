@@ -1,7 +1,21 @@
 /*jslint browser: true*/
-/*global $, jQuery, alert*/
+/*global $, ga, jQuery, alert*/
 var bcc_base = (function () {
   "use strict";
+  function createGoogleAnalyticsObject(i, s, o, g, r, a, m) {
+    i.GoogleAnalyticsObject = r;
+    i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments); };
+    i[r].l = +(new Date());
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  }
+  function submitGoogleAnalyticsData() {
+    ga("create", "UA-87073608-1", "auto");
+    ga("send", "pageview");
+  }
   function onClick_error(event) {
     var $target = $("#" + $(event.target).attr("for"));
     if ($target.length === 0) {
@@ -21,6 +35,8 @@ var bcc_base = (function () {
   function onReady(event) {
     $(".alert-danger > ul > li").on("click", onClick_error);
     $(".nav > li > a").on("click", onClick_navLink);
+    createGoogleAnalyticsObject(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
+    submitGoogleAnalyticsData();
   }
   $(document).ready(onReady);
   return {};
