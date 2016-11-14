@@ -12,6 +12,12 @@ var bcc_base = (function () {
     a.src = g;
     m.parentNode.insertBefore(a, m);
   }
+  function initDatePickers() {
+    $(".date-control").datepicker({ "minDate" : 1 });
+  }
+  function initTimePickers() {
+    $(".time-control").timeEntry({ "ampmPrefix" : " ", "spinnerImage" : "", "timeSteps" : [1, 5, 0] });
+  }
   function loadFonts() {
     var urlFonts = "https://fonts.googleapis.com/css?family=Chango|Roboto";
     $(document.createElement("link"))
@@ -44,6 +50,8 @@ var bcc_base = (function () {
     $(".nav > li > a").on("click", onClick_navLink);
     createGoogleAnalyticsObject(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
     submitGoogleAnalyticsData();
+    initDatePickers();
+    initTimePickers();
     loadFonts();
   }
   $(document).ready(onReady);

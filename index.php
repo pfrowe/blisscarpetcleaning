@@ -211,6 +211,22 @@ $validation = array(
       "messageFailure" => "Please provide the ZIP Code associated with the location where service should be provided."
     ]
   ],
+  "appt_date" => [
+    "default" => "",
+    "rangeDate" => [
+      "whenToTest" => true,
+      "minDate" => new DateTime("tomorrow"),
+      "messageFailure" => "Please select a date in the future (not today) for the suggested appointment date."
+    ]
+  ],
+  "appt_time" => [
+    "default" => "",
+    "regex" => [
+      "whenToTest" => true,
+      "patternToTest" => "/(0?[1-9]|1[0-2]:[0-5][05] [AP]M)/i",
+      "messageFailure" => "Please specify a valid suggested appointment time."
+    ]
+  ],
   "carpet_cleaning_count_rooms" => [
     "default" => "",
     "rangeNumeric" => [
@@ -347,8 +363,31 @@ function validateInput() {
         $errorMessages[$key] = $fieldValidation["required"]["messageFailure"];
       }
     }
+    if (isset($fieldValidation["rangeDate"])) {
+      $dateTest = strtotime($$key);
+      $isValid = $dateTest !== false;
+      if ($isValid) {
+        if (isset($fieldValidation["rangeDate"]["rangeMax"])) {
+          $isValid = $isValid && ($dateTest <= $fieldValidation["rangeDate"]["rangeMax"]);
+        }
+        if (isset($fieldValidation["rangeDate"]["rangeMin"])) {
+          $isValid = $isValid && ($dateTest >= $fieldValidation["rangeDate"]["rangeMin"]);
+        }
+      }
+      if (($isValid === false) && (!isset($errorMessages[$key]))) {
+        $errorMessages[$key] = $fieldValidation["rangeDate"]["messageFailure"];
+      }
+    }
     if (isset($fieldValidation["rangeNumeric"])) {
       $isValid = ($$key == "") || is_numeric($$key);
+      if ($isValid && ($$key != "")) {
+        if (isset($fieldValidation["rangeNumeric"]["rangeMax"])) {
+          $isValid = $isValid && ($$key <= $fieldValidation["rangeNumeric"]["rangeMax"]);
+        }
+        if (isset($fieldValidation["rangeNumeric"]["rangeMin"])) {
+          $isValid = $isValid && ($$key >= $fieldValidation["rangeNumeric"]["rangeMin"]);
+        }
+      }
       if (($isValid === false) && (!isset($errorMessages[$key]))) {
         $errorMessages[$key] = $fieldValidation["rangeNumeric"]["messageFailure"];
       }
@@ -383,6 +422,7 @@ function postValues() {
       `addressStreet2` = :address_street2,
       `addressCity` = :address_city,
       `addressZip` = :address_zip,
+      `dateAppointment` = :appt_date_time,
       `hasSpareCarpet` = :carpet_repair_have_extra,
       `textComment` = :comment_text;
 __SQL;
@@ -399,6 +439,15 @@ __SQL;
       `keyService` = :keyService,
       `countUnits` = :countUnits;
 __SQL;
+  /* Special handling for appt_date and appt_time fields. */
+  if ($_POST["appt_date"] . $_POST["appt_time"] != "") {
+    $dateAppointment =
+      ($_POST["appt_date"] != "")
+      ? $_POST["appt_date"]
+      : (new DateTime("tomorrow"))->format("m/d/Y");
+    $timeAppointment = ($_POST["appt_time"] != "") ? $_POST["appt_time"] : "08:00 AM";
+    $_POST["appt_date_time"] = (new DateTime("$dateAppointment $timeAppointment"))->format("Y-m-d H:i");
+  }
   /* Get the list of parameters from $sqlInsertOrder. */
   preg_match_all("/\:[\w_]+/", $sqlInsertOrder, $paramsDefined);
   /* Set up an empty array to store parameter values. */
@@ -469,6 +518,11 @@ if ($tryPost === true) {
           content="Bliss Carpet Cleaning, Perfection Carpet Cleaning, carpet cleaning, rug cleaning, hardwood floor cleaning, wood floor cleaning, hardwood polishing, tile cleaning, grout cleaning, tile and grout cleaning, upholstery cleaning, couch cleaning, sofa cleaning, armchair cleaning, carpet repair, carpet dye, carpet dying, air duct cleaning, air vent cleaning, vehicle cleaning, Scotch Guard, pre-treatment, water rinse, truck-mounted, anti-microbial, hypoallergenic" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+<!--
+    <link rel="stylesheet" type="text/css" href="css/jquery-mobile.min.css" />
+-->
+    <link rel="stylesheet" type="text/css" href="css/jquery.timeentry.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/bcc.base.css" />
   </head>
@@ -510,56 +564,7 @@ if ($tryPost === true) {
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <div class="well">
                 <div class="hero-unit">
-                  <div id="hero__carousel" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                      <li data-target="#hero__carousel" data-slide-to="0" class="active"></li>
-                      <li data-target="#hero__carousel" data-slide-to="1"></li>
-                      <li data-target="#hero__carousel" data-slide-to="2"></li>
-                      <li data-target="#hero__carousel" data-slide-to="3"></li>
-                      <li data-target="#hero__carousel" data-slide-to="4"></li>
-                      <li data-target="#hero__carousel" data-slide-to="5"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                      <div class="carousel-item item active">
-                        <img src="img/van-mounted.png" alt="Family owned and operated since 2007" />
-                        <h1>Family owned and operated</h1>
-                        <h2>Serving the Houston Area since 2007</h2>
-                      </div> <!-- END .carousel-item .item :nth-child(1) -->
-                      <div class="carousel-item item">
-                        <img src="img/wood-before-after.png" alt="Wood floor cleaning" />
-                        <h1>More than carpet cleaning&hellip;</h1>
-                        <h2>Wood floor cleaning</h2>
-                      </div> <!-- END .carousel-item .item :nth-child(3) -->
-                      <div class="carousel-item item">
-                        <img src="img/tile-before-after.png" alt="Tile and grout cleaning" />
-                        <h1>More than carpet cleaning&hellip;</h1>
-                        <h2>Tile and grout cleaning</h2>
-                      </div> <!-- END .carousel-item .item :nth-child(4) -->
-                      <div class="carousel-item item">
-                        <img src="img/upholstery-before-after.png" alt="Upholstery cleaning" />
-                        <h1>More than carpet cleaning&hellip;</h1>
-                        <h2>Upholstery cleaning</h2>
-                      </div> <!-- END .carousel-item .item :nth-child(7) -->
-                      <div class="carousel-item item">
-                        <img src="img/repair-before-after.png" alt="Carpet repair" />
-                        <h1>More than carpet cleaning&hellip;</h1>
-                        <h2>Carpet repair and dying</h2>
-                      </div> <!-- END .carousel-item .item :nth-child(2) -->
-                      <div class="carousel-item item">
-                        <img src="img/duct-before-after.png" alt="Air duct cleaning" />
-                        <h1>More than carpet cleaning&hellip;</h1>
-                        <h2>Air duct cleaning</h2>
-                      </div> <!-- END .carousel-item .item :nth-child(5) -->
-                    </div> <!-- END .carousel-inner -->
-                    <a class="left carousel-control" href="#hero__carousel" data-slide="prev">
-                      <span class="icon-prev" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#hero__carousel" data-slide="next">
-                      <span class="icon-next" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </div> <!-- END .carousel .slide #hero__carousel -->
+                  <img alt="Bliss Carpet Cleaning Van" src="img/van-mounted.png" />
                 </div> <!-- END .hero-unit -->
               </div> <!-- END .well -->
             </div> <!-- END .col-sm-12 .col-md-12 .col-lg-12 .col-xl-12 -->
@@ -601,18 +606,31 @@ if ($tryPost === true) {
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
               <div class="well">
-                <h2>Five Rooms &ndash; $99</h2>
-                <p>
-                  Get five rooms cleaned for only $99! Take advantage of this special and get up to two hallways
-                  cleaned FREE.
-                </p>
+                <h2>5 Rooms Special &ndash; $99</h2>
+                <h3>2 Free Hallways (Max)</h3>
+                <p>Includes detergent, odor killer, and deodorizers.</p>
               </div> <!-- END .well -->
             </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
               <div class="well">
                 <h2>VIP Customers</h2>
+                <p>Once we come and clean your carpets, make sure to ask about becoming a VIP Customer!</p>
+              </div> <!-- END .well -->
+            </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
+          </div> <!-- END .row -->
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="well">
+                <h2>3 Rooms Special &ndash; $75</h2>
+                <h3>1 Free Hallway (Max)</h3>
+                <p>Includes detergent, odor killer, and deodorizers.</p>
+              </div> <!-- END .well -->
+            </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="well">
+                <h2>Sofa and Couch &ndash; $115</h2>
                 <p>
-                  Ask us about how to become a VIP customer and get discounts on our services!
+                  We'll clean your upholstered furniture, too! For $115, we'll clean your sofa and couch.
                 </p>
               </div> <!-- END .well -->
             </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
@@ -621,33 +639,34 @@ if ($tryPost === true) {
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div class="well">
                 <h2>Standard Carpet Cleaning Rates</h2>
-                <h3>$25 per room</h3>
+                <h3>$30 per room</h3>
                 <p>
-                  We'll clean your rooms for $25 each. Minimum of two rooms per visit. Larger rooms may incur an
-                  additional charge.
+                  We'll clean your rooms for $30 each. Minimum of two rooms per visit. Larger rooms, hallways, and
+                  stairways may incur an additional charge.
                 </p>
                 <h3>Pre-treatment</h3>
                 <p>
-                  We use a unique combination of products to break up stains and dirt in your carpet before we pull
-                  it out with our cleaning equipment. Pre-treatment starts at $15 and includes spot-cleaning of two
+                  Does your carpet have red stains, heavy traffic stains, gum residue, or rust stains?  We use a
+                  unique combination of products to break up these and other stains in your carpet before pulling them
+                  out with our cleaning equipment. Pre-treatment starts at $15 and includes spot-cleaning of two
                   rooms. Additional charges may be incurred for more rooms and large or hard-to-lift stains.
                 </p>
                 <h3>Scotch Guard</h3>
-                <p>We can protect your carpet from future stains once we've got it clean.</p>
+                <p>Now that it's clean, protect your carpet from future stains.</p>
               </div> <!-- END .well -->
             </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
           </div> <!-- END .row -->
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
               <div class="well">
-                <h2>Wood Floor Cleaning Rates</h2>
+                <h2>Wood Floors</h2>
                 <h3>79&cent; / sq. ft.</h3>
                 <p>We'll restore the beauty of your hardwood floors for only $0.79 per square foot.</p>
               </div> <!-- END .well -->
             </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
               <div class="well">
-                <h2>Tile &amp; Grout Cleaning Rates</h2>
+                <h2>Tile &amp; Grout</h2>
                 <h3>79&cent; / sq. ft.</h3>
                 <p>Save your hips and your knees. We'll clean your tile floors for $0.79 per square foot.</p>
               </div> <!-- END .well -->
@@ -794,7 +813,7 @@ if ($tryPost === true) {
                   </div> <!-- END .well -->
                 </fieldset>
                 <fieldset class="form-group">
-                  <legend>Where does the work need to be done?</legend>
+                  <legend>When and where does the work need to be done?</legend>
                   <div class="well">
                     <?php $isInvalid = isset($errorMessages["address_street1"]); ?>
                     <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
@@ -897,6 +916,54 @@ if ($tryPost === true) {
                       }
                       ?>
                     </div> <!-- END .form-group -->
+                    <?php $isInvalid = isset($errorMessages["appt_date"]); ?>
+                    <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
+                      <label class="control-label" for="appt_date">
+                        Suggested Appointment Date
+                      </label>
+                      <input type="text" class="form-control date-control" id="appt_date" maxlength="10"
+                             name="appt_date" style="z-index: 3"
+                             <?php
+                              if (isset($_POST["appt_date"]))
+                                echo 'value="' . htmlspecialchars($_POST['appt_date']) . '"';
+                             ?> />
+                      <?php
+                      /* Did the appt_date field fail validation? */
+                      if ($isInvalid && ($errorMessages["appt_date"] != "")) {
+                        /* Yes, the appt_date field failed validation. Display its error message. */
+                        ?>
+                          <div class="form-control-feedback">
+                            <?= htmlspecialchars($errorMessages["appt_date"]) ?><br />
+                          </div>
+                        <?php
+                      }
+                      ?>
+                    </div> <!-- END .form-group -->
+                    <?php $isInvalid = isset($errorMessages["appt_time"]); ?>
+                    <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
+                      <label class="control-label" for="appt_time">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                        Suggested Appointment Time
+                      </label>
+                      <input type="text" class="form-control time-control" id="appt_time" maxlength="10"
+                             name="appt_time" style="z-index: 3"
+                             <?php
+                              if (isset($_POST["appt_date"]))
+                                echo 'value="' . htmlspecialchars($_POST['appt_time']) . '"';
+                             ?> />
+                      <?php
+                      /* Did the appt_date field fail validation? */
+                      if ($isInvalid && ($errorMessages["appt_time"] != "")) {
+                        /* Yes, the appt_time field failed validation. Display its error message. */
+                        ?>
+                          <div class="form-control-feedback">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <?= htmlspecialchars($errorMessages["appt_time"]) ?>
+                          </div>
+                        <?php
+                      }
+                      ?>
+                    </div> <!-- END .form-group -->
                   </div> <!-- END .well -->
                 </fieldset>
                 <fieldset class="form-group">
@@ -955,7 +1022,7 @@ if ($tryPost === true) {
                                                  id="<?= $nameField ?>" name="<?= $nameField ?>"
                                                  <?php
                                                   if (isset($_POST[$nameField]) && ($_POST[$nameField] != ""))
-                                                    echo "value=\"{htmlspecialchars($_POST[$nameField])}\" ";
+                                                    echo 'value=\"' . htmlspecialchars($_POST[$nameField]) . '\" ';
                                                   if (isset($infoField["hint"]) && ($infoField["hint"] != "")) {
                                                     echo "aria-describedby=\"{$nameField}_desc\" ";
                                                   }
@@ -1072,6 +1139,18 @@ if ($tryPost === true) {
                         <?= htmlspecialchars($_POST["address_zip"]) ?>
                       </div>
                     </div> <!-- END .row -->
+                    <?php
+                    if (isset($_POST["appt_date_time"]) && ($_POST["appt_date_time"] != "")) {
+                      ?>
+                        <div class="row">
+                          <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Appointment Time</div>
+                          <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                            <?= (new DateTime($_POST["appt_date_time"]))->format("m/d/Y h:i A") ?>
+                          </div>
+                        </div>
+                      <?php
+                    }
+                    ?>
                   </fieldset>
                   <?php
                   /* Only show each of the following sections if form input was provided for them. */
@@ -1177,42 +1256,13 @@ if ($tryPost === true) {
                     </div>
                   <?php }
                   /*
-                   * We've got the content of the quote confirmation. Let's store it in a variable for easy inclusion
-                   * in an email.
+                   * We've got the content of the quote confirmation cached in the buffer. Let's store it in a
+                   * variable for easy inclusion in an email, then send it to the client. We'll send out the email
+                   * after everything has been sent to the client.
                    */
-                  $emailBody = ob_get_contents();
-                  /* Define the values we need for sending out an email. */
-                  $email = array(
-                    "headers" => array(
-                      "From" => $emailSettings["from"],
-                      "Reply-To" => $emailSettings["replyTo"],
-                      "MIME-Version" => "1.0",
-                      "Content-Type" => "text/html; charset=UTF-8"
-                    ),
-                    "message" => $emailBody,
-                    "subject" => $emailSettings["subject"],
-                    "to" => $emailSettings["to"]
-                  );
-                  try {
-                    /* Try creating the Mail object. */
-                    $smtp = Mail::factory(
-                      "smtp",
-                      array(
-                        "auth" => false,
-                        "host" => $emailSettings["host"],
-                        "port" => $emailSettings["port"],
-                        "username" => $emailSettings["username"],
-                        "password" => $emailSettings["password"]
-                      )
-                    );
-                    /* Try sending the email out. */
-                    $mail = $smtp->send($email["to"], $email["headers"], $email["message"]);
-                  } catch (Exception $e) {
-                    /* Something failed. Dump the exception for debugging purposes. */
-                    var_dump($e);
-                  }
-                  /* We've sent out the cached HTML via email. Now we can send it to the client. */
+                  $emailBody = ob_get_clean();
                   ob_flush();
+                  echo $emailBody;
                   ?>
                 </div> <!-- END .well -->
               </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
@@ -1224,7 +1274,48 @@ if ($tryPost === true) {
       </div> <!-- END container tab-content -->
     </main>
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<!--
+    <script type="text/javascript" src="js/jquery-mobile.min.js"></script>
+-->
+    <script type="text/javascript" src="js/jquery.plugin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.timeentry.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bcc.base.js"></script>
   </body>
 </html>
+<?php
+/* Are we supposed to send out an email? */
+if ($doPost) {
+  /* Yes, we are supposed to send out an email. Define the values we need for sending out an email. */
+  $email = array(
+    "headers" => array(
+      "From" => $emailSettings["from"],
+      "Reply-To" => $emailSettings["replyTo"],
+      "MIME-Version" => "1.0",
+      "Content-Type" => "text/html; charset=UTF-8"
+    ),
+    "message" => $emailBody,
+    "subject" => $emailSettings["subject"],
+    "to" => $emailSettings["to"]
+  );
+  try {
+    /* Try creating the Mail object. */
+    $smtp = Mail::factory(
+      "smtp",
+      array(
+        "auth" => false,
+        "host" => $emailSettings["host"],
+        "port" => $emailSettings["port"],
+        "username" => $emailSettings["username"],
+        "password" => $emailSettings["password"]
+      )
+    );
+    /* Try sending the email out. */
+    $mail = $smtp->send($email["to"], $email["headers"], $email["message"]);
+  } catch (Exception $e) {
+    /* Something failed. Dump the exception for debugging purposes. */
+    var_dump($e);
+  }
+}
+?>

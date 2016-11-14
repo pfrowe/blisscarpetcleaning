@@ -36,6 +36,10 @@
   top: 0;
   z-index: -1;
 }
+.date-control {
+  position: relative;
+  z-index: 3;
+}
 .glyphicon-asterisk {
   color: maroon;
 }
@@ -50,10 +54,22 @@
   top: 0;
   width: 100%;
 }
+.hero-unit {
+  height: 500px;
+  max-height: 48.148vw;
+  position: relative;
+}
 .hero-unit .carousel {
   max-width: 750px;
   margin-left: auto;
   margin-right: auto;
+}
+.hero-unit > img {
+  height: auto;
+  left: 50%;
+  max-width: 100%;
+  position: absolute;
+  transform: translateX(-50%);
 }
 .input-group label {
   display: table-row;
@@ -139,6 +155,10 @@
 }
 .tab-pane {
   min-height: 75vh;
+}
+.ui-datepicker {
+  background: hsl(54, 50%, 91%);
+  border: 1px solid #bfad0a;
 }
 .well {
   background: hsla(54, 50%, 91%, 0.25);

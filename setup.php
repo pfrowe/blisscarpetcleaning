@@ -4,7 +4,7 @@
     <title>Bliss Carpet Cleaning - DB Setup</title>
   </head>
   <body>
-    <pre>Setting up `blisscc` database...</pre>
+    <pre>Setting up `blisscarpetcleaning` database...</pre>
 <?php
 include "settings.php";
 $sqlCreateCategoryTable = <<<__SQL
@@ -91,8 +91,9 @@ CREATE TABLE `order` (
   `addressZip` VARCHAR(10) COMMENT 'ZIP Code associated with the service location',
   `hasSpareCarpet` TINYINT(1) COMMENT 'Customer indicated spare carpet is available for repairs',
   `textComment` TEXT COMMENT 'Additional notes provided by the customer',
-  `dateQuoted` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `dateServiced` DATETIME,
+  `dateQuoted` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date and time quote request was received',
+  `dateAppointment` DATETIME COMMENT 'Date and time customer suggested for appointment',
+  `dateServiced` DATETIME COMMENT 'Date and time service was provided in response to this quote',
   `amountQuoted` DECIMAL (8, 2) NOT NULL DEFAULT 0 COMMENT 'Total amount quoted (may deviate from calculated amount)'
 );
 __SQL;
