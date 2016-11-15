@@ -64,9 +64,17 @@
   margin-left: auto;
   margin-right: auto;
 }
+.hero-unit > .overlay {
+  height: 100%;
+  margin: auto 5%;
+  position: absolute;
+  text-align: center;
+  width: 90%;
+}
 .hero-unit > img {
   height: auto;
   left: 50%;
+  max-height: 100%;
   max-width: 100%;
   position: absolute;
   transform: translateX(-50%);
@@ -140,6 +148,13 @@
 .navbar-inverse .nav > .active > a:hover {
   text-shadow: -1px -1px 1px #ff7200, -1px 0 1px #ff7200, -1px 1px 1px #ff7200, 0 1px 1px #ff7200,
     1px 1px 1px #ff7200, 1px 0 1px #ff7200, 1px -1px 1px #ff7200, 0 -1px 1px #ff7200;  
+}
+.overlay h1:first-child {
+  margin-top: 0;
+}
+.overlay h2:last-child {
+  bottom: 0;
+  position: absolute;
 }
 .panel {
   background-color: #e8e2ae;
@@ -239,14 +254,14 @@ table.pull-right {
   }
 }
 @media (max-width: 767px) and (orientation: portrait) {
-  .carousel-item h1 {
-    font-size: 18px;
+  .hero-unit h1 {
+    font-size: 4vw;
   }
-  .carousel-item h2 {
-    font-size: 15px;
+  .hero-unit h2 {
+    font-size: 3.5vw;
   }
-  .carousel-item h3 {
-    font-size: 12px;
+  .hero-unit h3 {
+    font-size: 3vw;
   }
   .navbar img.logo {
     position: relative;

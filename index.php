@@ -565,6 +565,9 @@ if ($tryPost === true) {
               <div class="well">
                 <div class="hero-unit">
                   <img alt="Bliss Carpet Cleaning Van" src="img/van-mounted.png" />
+                  <div class="overlay">
+                    <h1>Family owned and operated in Houston since 2007.</h1>
+                  </div>
                 </div> <!-- END .hero-unit -->
               </div> <!-- END .well -->
             </div> <!-- END .col-sm-12 .col-md-12 .col-lg-12 .col-xl-12 -->
@@ -576,9 +579,9 @@ if ($tryPost === true) {
                 <p>Serving the Houston area since 2007, we offer a variety of cleaning services.</p>
                 <ul>
                   <li>Carpet cleaning</li>
-                  <li>Wood floor cleaning</li>
-                  <li>Tile and grout cleaning</li>
                   <li>Upholstery cleaning</li>
+                  <li>Tile and grout cleaning</li>
+                  <li>Wood floor cleaning</li>
                   <li>Carpet repair</li>
                   <li>Air duct cleaning</li>
                 </ul>
@@ -587,6 +590,7 @@ if ($tryPost === true) {
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
               <div class="well">
                 <h2>Quality Cleaning</h2>
+                <p>We specialize in cleanliness, freshness, and customer service.</p>
                 <h3>Hygienic</h3>
                 <p>
                   Our truck-mounted cleaning units kill germs with water heated to 230&deg;F. Thorough cleaning also
@@ -595,7 +599,7 @@ if ($tryPost === true) {
                 <h3>Protective</h3>
                 <p>We offer Scotch Guard treatment to lengthen the life of your carpets.</p>
                 <h3>Environmentally conscious</h3>
-                <p>Our cleaning products are natural and bio-degradable.</p>
+                <p>Our cleaning products are bio-degradable.</p>
                 <h3>Thorough</h3>
                 <p>We pre-treat heavy traffic areas and rinse cleaned carpets with water.</p>
               </div> <!-- END .well -->
@@ -613,25 +617,9 @@ if ($tryPost === true) {
             </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
               <div class="well">
-                <h2>VIP Customers</h2>
-                <p>Once we come and clean your carpets, make sure to ask about becoming a VIP Customer!</p>
-              </div> <!-- END .well -->
-            </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
-          </div> <!-- END .row -->
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div class="well">
                 <h2>3 Rooms Special &ndash; $75</h2>
                 <h3>1 Free Hallway (Max)</h3>
                 <p>Includes detergent, odor killer, and deodorizers.</p>
-              </div> <!-- END .well -->
-            </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div class="well">
-                <h2>Sofa and Couch &ndash; $115</h2>
-                <p>
-                  We'll clean your upholstered furniture, too! For $115, we'll clean your sofa and couch.
-                </p>
               </div> <!-- END .well -->
             </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
           </div> <!-- END .row -->
@@ -640,21 +628,34 @@ if ($tryPost === true) {
               <div class="well">
                 <h2>Standard Carpet Cleaning Rates</h2>
                 <h3>$30 per room</h3>
-                <p>
-                  We'll clean your rooms for $30 each. Minimum of two rooms per visit. Larger rooms, hallways, and
-                  stairways may incur an additional charge.
-                </p>
+                <p>Minimum of two rooms per visit. Includes detergent, odor killer, and deodorizers.</p>
                 <h3>Pre-treatment</h3>
                 <p>
-                  Does your carpet have red stains, heavy traffic stains, gum residue, or rust stains?  We use a
-                  unique combination of products to break up these and other stains in your carpet before pulling them
-                  out with our cleaning equipment. Pre-treatment starts at $15 and includes spot-cleaning of two
-                  rooms. Additional charges may be incurred for more rooms and large or hard-to-lift stains.
+                  Heavy traffic stains? Red stains? Gum residue? Rust stains? Pet stains? We use a unique combination of
+                  products to break up these and other stains in your carpet before pulling them out with our cleaning
+                  equipment. Pre-treatment starts at $15; this normally handles spot-cleaning of two rooms. Additional
+                  charges may be incurred for more rooms and large or hard-to-lift stains.
                 </p>
                 <h3>Scotch Guard</h3>
-                <p>Now that it's clean, protect your carpet from future stains.</p>
+                <p>Now that it's clean, protect your carpet or upholstery from future stains.</p>
               </div> <!-- END .well -->
             </div> <!-- END .col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 -->
+          </div> <!-- END .row -->
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="well">
+                <h2>Sofa and Chair &ndash; $115</h2>
+                <p>
+                  For $115, we'll clean your sofa and chair. Ask us about applying Scotch Guard to keep the stains out.
+                </p>
+              </div> <!-- END .well -->
+            </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="well">
+                <h2>VIP Customers</h2>
+                <p>Once we come and clean your carpets, make sure to ask about becoming a VIP Customer!</p>
+              </div> <!-- END .well -->
+            </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
           </div> <!-- END .row -->
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -942,7 +943,6 @@ if ($tryPost === true) {
                     <?php $isInvalid = isset($errorMessages["appt_time"]); ?>
                     <div class="form-group <?= $isInvalid ? 'has-error has-feedback' : '' ?>">
                       <label class="control-label" for="appt_time">
-                        <span class="glyphicon glyphicon-asterisk"></span>
                         Suggested Appointment Time
                       </label>
                       <input type="text" class="form-control time-control" id="appt_time" maxlength="10"

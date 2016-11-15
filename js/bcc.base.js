@@ -16,7 +16,7 @@ var bcc_base = (function () {
     $(".date-control").datepicker({ "minDate" : 1 });
   }
   function initTimePickers() {
-    $(".time-control").timeEntry({ "ampmPrefix" : " ", "spinnerImage" : "", "timeSteps" : [1, 5, 0] });
+    $(".time-control").timeEntry({ "ampmPrefix" : " ", "spinnerImage" : "", "timeSteps" : [1, 15, 0] });
   }
   function loadFonts() {
     var urlFonts = "https://fonts.googleapis.com/css?family=Chango|Roboto";
