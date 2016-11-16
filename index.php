@@ -1024,7 +1024,7 @@ if ($tryPost === true) {
                                                  id="<?= $nameField ?>" name="<?= $nameField ?>"
                                                  <?php
                                                   if (isset($_POST[$nameField]) && ($_POST[$nameField] != ""))
-                                                    echo 'value=\"' . htmlspecialchars($_POST[$nameField]) . '\" ';
+                                                    echo 'value="' . htmlspecialchars($_POST[$nameField]) . '" ';
                                                   if (isset($infoField["hint"]) && ($infoField["hint"] != "")) {
                                                     echo "aria-describedby=\"{$nameField}_desc\" ";
                                                   }
@@ -1287,6 +1287,7 @@ if ($tryPost === true) {
 <?php
 /* Are we supposed to send out an email? */
 if ($doPost) {
+  /* The first thing we'll do is tweak the HTML output so it will render fairly well in an email client. */
   $emailBody = str_replace(
     "<div class=\"col-xs-4 col-sm-3 col-md-3 col-lg-3\">",
     "<div style=\"float: left; width: 25%\">",
@@ -1302,9 +1303,21 @@ if ($doPost) {
     "<div style=\"clear: both; height: 1px; overflow: hidden\">&nbsp;</div><!-- END .row -->",
     $emailBody
   );
+  /* With that done, now we'll tweak the HTML output into something that renders well as plain text. */
+  $emailBodyPlainText = preg_replace("/\s+</", "<", $emailBody);
+  $emailBodyPlainText = preg_replace("/>\s+/", ">", $emailBodyPlainText);
+  $emailBodyPlainText = preg_replace("/\s+/", " ", $emailBodyPlainText);
+  $emailBodyPlainText = preg_replace("/<h3>(.+?)<\/h3>/", "\n$1\n=========================\n", $emailBodyPlainText);
+  $emailBodyPlainText = str_replace("</fieldset>", "\n", $emailBodyPlainText);
+  $emailBodyPlainText = str_replace(
+    "<div style=\"clear: both; height: 1px; overflow: hidden\">&nbsp;</div><!-- END .row -->",
+    "\n",
+    $emailBodyPlainText
+  );
+  $emailBodyPlainText = str_replace("<div style=\"float: left; width: 70%\">", "\n\t", $emailBodyPlainText);
+  $emailBodyPlainText = str_replace("<br />", "\n\t", $emailBodyPlainText);
+  $emailBodyPlainText = preg_replace("/<[^>]+?>/", "", $emailBodyPlainText);
   include "swiftmailer/lib/swift_required.php";
-  ini_set("display_errors", "on");
-  error_reporting(E_ALL);
   try {
     /* Try creating the Mail object. */
     $smtpTransport = Swift_SmtpTransport::newInstance($emailSettings["host"], $emailSettings["port"])
@@ -1316,8 +1329,8 @@ if ($doPost) {
       ->setFrom($emailSettings["to"])
       ->setReplyTo([ $_POST["customer_email"] => $_POST["customer_name"] ])
       ->setTo($emailSettings["to"])
-      ->setBody($emailBody)
-      ->setContentType("text/html");
+      ->setBody($emailBodyPlainText)
+      ->addPart($emailBody, "text/html");
     /* Try sending the email out. */
     $mail = $smtpMailer->send($message);
   } catch (Exception $e) {
