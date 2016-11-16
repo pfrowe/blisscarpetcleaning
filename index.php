@@ -7,10 +7,6 @@
  * This website was created for Bliss Carpet Cleaning in Houston, TX, by Paul Rowe.
  **/
 /**
- * Get the PEAR Mail module.
- **/
-require_once "Mail.php";
-/**
  * The settings.php file defines values for $dbSettings and $emailSettings.
  * $dbSettings = [ "hostname", "database", "username", "password" ];
  * $emailSettings = [ "from", "host", "port", "replyTo", "subject", "to", "username", "password" ];
@@ -160,7 +156,7 @@ $validation = array(
     "default" => "",
     "regex" => [
       "whenToTest" => true,
-      "patternToTest" => "/^(\([0-9]{3}\) |[0-9]{3}[ .-])[0-9]{3}[ .-][0-9]{4}$/",
+      "patternToTest" => "/^(\([0-9]{3}\) |[0-9]{3}[ .-]?)[0-9]{3}[ .-]?[0-9]{4}$/",
       "messageFailure" => "Please provide a valid phone number and include the area code."
     ],
     "required" => [
@@ -214,7 +210,6 @@ $validation = array(
   "appt_date" => [
     "default" => "",
     "rangeDate" => [
-      "whenToTest" => true,
       "minDate" => new DateTime("tomorrow"),
       "messageFailure" => "Please select a date in the future (not today) for the suggested appointment date."
     ]
@@ -325,10 +320,13 @@ function isFieldsetEmpty($nameFieldset) {
   if (array_key_exists($nameFieldset, $fieldsServices)) {
     foreach ($fieldsServices[$nameFieldset]["fields"] as $nameField => $infoField) {
       try {
-        $returnValue = $returnValue
-          && (!isset($_POST[$nameField]) || ($_POST[$nameField] == $validation[$nameField]["default"]));
+        $isFieldEmpty = !isset($_POST[$nameField]);
+        if (isset($validation[$nameField])) {
+          $isFieldEmpty = $isFieldEmpty || ($_POST[$nameField] == $validation[$nameField]["default"]);
+        }
+        $returnValue = $returnValue && $isFieldEmpty;
       } catch (Exception $e) {
-        var_dump($nameField); exit();
+        var_dump($nameField); die();
       }
     }
   }
@@ -409,88 +407,92 @@ function validateInput() {
  * @return void
  **/
 function postValues() {
-  global $dbSettings, $validation;
-  /* This SQL statement is responsible for inserting the order record. */
-  $sqlInsertOrder = <<<__SQL
-    INSERT INTO `order`
-    SET
-      `nameCustomer` = :customer_name,
-      `emailAddress` = :customer_email,
-      `phoneNumber` = :customer_phone,
-      `preferenceContact` = :customer_prefer,
-      `addressStreet1` = :address_street1,
-      `addressStreet2` = :address_street2,
-      `addressCity` = :address_city,
-      `addressZip` = :address_zip,
-      `dateAppointment` = :appt_date_time,
-      `hasSpareCarpet` = :carpet_repair_have_extra,
-      `textComment` = :comment_text;
+  try {
+    global $dbSettings, $validation;
+    /* This SQL statement is responsible for inserting the order record. */
+    $sqlInsertOrder = <<<__SQL
+      INSERT INTO `order`
+      SET
+        `nameCustomer` = :customer_name,
+        `emailAddress` = :customer_email,
+        `phoneNumber` = :customer_phone,
+        `preferenceContact` = :customer_prefer,
+        `addressStreet1` = :address_street1,
+        `addressStreet2` = :address_street2,
+        `addressCity` = :address_city,
+        `addressZip` = :address_zip,
+        `dateAppointment` = :appt_date_time,
+        `hasSpareCarpet` = :carpet_repair_have_extra,
+        `textComment` = :comment_text;
 __SQL;
-  /* This SQL statement is instrumental for matching form control names with their service keys. */
-  $sqlSelectServiceList = <<<__SQL
-    SELECT `keyService`, `nameFormVar`
-    FROM `service`;
+    /* This SQL statement is instrumental for matching form control names with their service keys. */
+    $sqlSelectServiceList = <<<__SQL
+      SELECT `keyService`, `nameFormVar`
+      FROM `service`;
 __SQL;
-  /* This SQL statement is used to insert records linking the new order with its associated services. */
-  $sqlInsertService = <<<__SQL
-    INSERT INTO `order_service`
-    SET
-      `keyOrder` = :keyNewOrder,
-      `keyService` = :keyService,
-      `countUnits` = :countUnits;
+    /* This SQL statement is used to insert records linking the new order with its associated services. */
+    $sqlInsertService = <<<__SQL
+      INSERT INTO `order_service`
+      SET
+        `keyOrder` = :keyNewOrder,
+        `keyService` = :keyService,
+        `countUnits` = :countUnits;
 __SQL;
-  /* Special handling for appt_date and appt_time fields. */
-  if ($_POST["appt_date"] . $_POST["appt_time"] != "") {
-    $dateAppointment =
-      ($_POST["appt_date"] != "")
-      ? $_POST["appt_date"]
-      : (new DateTime("tomorrow"))->format("m/d/Y");
-    $timeAppointment = ($_POST["appt_time"] != "") ? $_POST["appt_time"] : "08:00 AM";
-    $_POST["appt_date_time"] = (new DateTime("$dateAppointment $timeAppointment"))->format("Y-m-d H:i");
-  }
-  /* Get the list of parameters from $sqlInsertOrder. */
-  preg_match_all("/\:[\w_]+/", $sqlInsertOrder, $paramsDefined);
-  /* Set up an empty array to store parameter values. */
-  $valuesParams = array();
-  /*
-   * Loop through the list of parameters (which share names with form inputs) and assign their values in
-   * $valuesParams.
-   */
-  foreach ($paramsDefined[0] as $index => $paramName) {
-    $valuesParams[$paramName] = $_POST[preg_replace("/^\:/", "", $paramName)];
-  }
-  /* Create the connection to the database. */
-  $pdoCnxn = new PDO(
-    "mysql:host={$dbSettings['hostname']};dbname={$dbSettings['database']}",
-    $dbSettings["username"],
-    $dbSettings["password"]
-  );
-  /* Prepare the INSERT statement for the order record. */
-  $stmtInsertOrder = $pdoCnxn->prepare($sqlInsertOrder);
-  /* Execute the INSERT statement, attaching the parameter values. */
-  $stmtInsertOrder->execute($valuesParams);
-  /* Get the key for the new order record. */
-  $keyNewOrder = $pdoCnxn->lastInsertId();
-  /* Get all the service records so we can loop through them. */
-  $resultsServices = $pdoCnxn->query($sqlSelectServiceList)->fetchAll();
-  /* Loop through the service records. */
-  foreach ($resultsServices as $index => $currentRow) {
-    /*
-     * All of these fields are numeric and, if requested, positive values. Check to see if they are set and greater
-     * than zero.
-     */
-    if (isset($_POST[$currentRow["nameFormVar"]]) && ($_POST[$currentRow["nameFormVar"]] > 0)) {
-      /* This service has been requested. Prepare the INSERT statement for its order_service record. */
-      $stmtInsertService = $pdoCnxn->prepare($sqlInsertService);
-      /* Bind the value of the order key. */
-      $stmtInsertService->bindParam(":keyNewOrder", $keyNewOrder);
-      /* Bind the value of the service key. */
-      $stmtInsertService->bindParam(":keyService", $currentRow["keyService"]);
-      /* Bind the value of the service count. */
-      $stmtInsertService->bindParam(":countUnits", $_POST[$currentRow["nameFormVar"]]);
-      /* Execute the INSERT statement. */
-      $stmtInsertService->execute();
+    /* Special handling for appt_date and appt_time fields. */
+    if ($_POST["appt_date"] . $_POST["appt_time"] != "") {
+      $dateAppointment =
+        ($_POST["appt_date"] != "")
+        ? $_POST["appt_date"]
+        : (new DateTime("tomorrow"))->format("m/d/Y");
+      $timeAppointment = ($_POST["appt_time"] != "") ? $_POST["appt_time"] : "08:00 AM";
+      $_POST["appt_date_time"] = (new DateTime("$dateAppointment $timeAppointment"))->format("Y-m-d H:i");
     }
+    /* Get the list of parameters from $sqlInsertOrder. */
+    preg_match_all("/\:[\w_]+/", $sqlInsertOrder, $paramsDefined);
+    /* Set up an empty array to store parameter values. */
+    $valuesParams = array();
+    /*
+     * Loop through the list of parameters (which share names with form inputs) and assign their values in
+     * $valuesParams.
+     */
+    foreach ($paramsDefined[0] as $index => $paramName) {
+      $valuesParams[$paramName] = $_POST[preg_replace("/^\:/", "", $paramName)];
+    }
+    /* Create the connection to the database. */
+    $pdoCnxn = new PDO(
+      "mysql:host={$dbSettings['hostname']};dbname={$dbSettings['database']}",
+      $dbSettings["username"],
+      $dbSettings["password"]
+    );
+    /* Prepare the INSERT statement for the order record. */
+    $stmtInsertOrder = $pdoCnxn->prepare($sqlInsertOrder);
+    /* Execute the INSERT statement, attaching the parameter values. */
+    $stmtInsertOrder->execute($valuesParams);
+    /* Get the key for the new order record. */
+    $keyNewOrder = $pdoCnxn->lastInsertId();
+    /* Get all the service records so we can loop through them. */
+    $resultsServices = $pdoCnxn->query($sqlSelectServiceList)->fetchAll();
+    /* Loop through the service records. */
+    foreach ($resultsServices as $index => $currentRow) {
+      /*
+       * All of these fields are numeric and, if requested, positive values. Check to see if they are set and greater
+       * than zero.
+       */
+      if (isset($_POST[$currentRow["nameFormVar"]]) && ($_POST[$currentRow["nameFormVar"]] > 0)) {
+        /* This service has been requested. Prepare the INSERT statement for its order_service record. */
+        $stmtInsertService = $pdoCnxn->prepare($sqlInsertService);
+        /* Bind the value of the order key. */
+        $stmtInsertService->bindParam(":keyNewOrder", $keyNewOrder);
+        /* Bind the value of the service key. */
+        $stmtInsertService->bindParam(":keyService", $currentRow["keyService"]);
+        /* Bind the value of the service count. */
+        $stmtInsertService->bindParam(":countUnits", $_POST[$currentRow["nameFormVar"]]);
+        /* Execute the INSERT statement. */
+        $stmtInsertService->execute();
+      }
+    }
+  } catch (Exception $e) {
+    var_dump($e); die();
   }
 }
 $doPost = false;
@@ -1282,40 +1284,47 @@ if ($tryPost === true) {
     <script type="text/javascript" src="js/jquery.timeentry.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bcc.base.js"></script>
-  </body>
-</html>
 <?php
 /* Are we supposed to send out an email? */
 if ($doPost) {
-  /* Yes, we are supposed to send out an email. Define the values we need for sending out an email. */
-  $email = array(
-    "headers" => array(
-      "From" => $emailSettings["from"],
-      "Reply-To" => $emailSettings["replyTo"],
-      "MIME-Version" => "1.0",
-      "Content-Type" => "text/html; charset=UTF-8"
-    ),
-    "message" => $emailBody,
-    "subject" => $emailSettings["subject"],
-    "to" => $emailSettings["to"]
+  $emailBody = str_replace(
+    "<div class=\"col-xs-4 col-sm-3 col-md-3 col-lg-3\">",
+    "<div style=\"float: left; width: 25%\">",
+    $emailBody
   );
+  $emailBody = str_replace(
+    "<div class=\"col-xs-8 col-sm-9 col-md-9 col-lg-9\">",
+    "<div style=\"float: left; width: 70%\">",
+    $emailBody
+  );
+  $emailBody = str_replace(
+    "<!-- END .row -->",
+    "<div style=\"clear: both; height: 1px; overflow: hidden\">&nbsp;</div><!-- END .row -->",
+    $emailBody
+  );
+  include "swiftmailer/lib/swift_required.php";
+  ini_set("display_errors", "on");
+  error_reporting(E_ALL);
   try {
     /* Try creating the Mail object. */
-    $smtp = Mail::factory(
-      "smtp",
-      array(
-        "auth" => false,
-        "host" => $emailSettings["host"],
-        "port" => $emailSettings["port"],
-        "username" => $emailSettings["username"],
-        "password" => $emailSettings["password"]
-      )
-    );
+    $smtpTransport = Swift_SmtpTransport::newInstance($emailSettings["host"], $emailSettings["port"])
+      ->setUsername($emailSettings["username"])
+      ->setPassword($emailSettings["password"]);
+    $smtpMailer = Swift_Mailer::newInstance($smtpTransport);
+    $message = Swift_Message::newInstance($emailSettings["subject"])
+      ->setSubject("{$emailSettings["subject"]} by {$_POST["customer_name"]}")
+      ->setFrom($emailSettings["to"])
+      ->setReplyTo([ $_POST["customer_email"] => $_POST["customer_name"] ])
+      ->setTo($emailSettings["to"])
+      ->setBody($emailBody)
+      ->setContentType("text/html");
     /* Try sending the email out. */
-    $mail = $smtp->send($email["to"], $email["headers"], $email["message"]);
+    $mail = $smtpMailer->send($message);
   } catch (Exception $e) {
     /* Something failed. Dump the exception for debugging purposes. */
-    var_dump($e);
+    error_log($e);
   }
 }
 ?>
+  </body>
+</html>
