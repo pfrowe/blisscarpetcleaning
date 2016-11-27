@@ -517,7 +517,7 @@ if ($tryPost === true) {
     <meta name="description"
           content="Bliss Carpet Cleaning is a family-owned and -operated business serving Houston, TX, and providing services including: carpet cleaning, wood floor cleaning, tile and grout cleaning, upholstery cleaning, carpet repair, carpet dying, and air duct cleaning." />
     <meta name="keywords"
-          content="Bliss Carpet Cleaning, Perfection Carpet Cleaning, carpet cleaning, rug cleaning, hardwood floor cleaning, wood floor cleaning, hardwood polishing, tile cleaning, grout cleaning, tile and grout cleaning, upholstery cleaning, couch cleaning, sofa cleaning, armchair cleaning, carpet repair, carpet dye, carpet dying, air duct cleaning, air vent cleaning, vehicle cleaning, Scotch Guard, pre-treatment, water rinse, truck-mounted, anti-microbial, hypoallergenic" />
+          content="Bliss Carpet Cleaning, Perfection Carpet Cleaning, carpet cleaning, rug cleaning, hardwood floor cleaning, wood floor cleaning, hardwood polishing, tile cleaning, grout cleaning, tile and grout cleaning, upholstery cleaning, couch cleaning, sofa cleaning, armchair cleaning, carpet repair, carpet dye, carpet dying, air duct cleaning, air vent cleaning, vehicle cleaning, Scotch Guard, pre-treatment, water rinse, truck-mounted, anti-microbial, hypoallergenic, Houston, Cypress, Tomball" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
@@ -542,8 +542,8 @@ if ($tryPost === true) {
             <span class="icon-bar"></span>
           </button>
           <img alt="Bliss Carpet Cleaning logo" class="logo" src="img/orange-cleaner.png" />
-          <a class="navbar-brand" href="#">Bliss Carpet Cleaning</a>
-          <a class="navbar-contact" href="tel:2817097708">281 709 7708</a>
+          <h1 class="navbar-brand">Bliss Carpet Cleaning</h1>
+          <a class="navbar-contact" href="tel:2817097708">(281) 709-7708</a>
         </form></div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-menu-collapse">
@@ -595,11 +595,11 @@ if ($tryPost === true) {
                 <p>We specialize in cleanliness, freshness, and customer service.</p>
                 <h3>Hygienic</h3>
                 <p>
-                  Our truck-mounted cleaning units kill germs with water heated to 230&deg;F. Thorough cleaning also
-                  reduces the amount of allergens in the air, whether in your carpet or your air ducts.
+                  Our truck-mounted carpet cleaning units kill germs with water heated to 230&deg;F. Thorough cleaning
+                  also reduces the amount of allergens in the air, whether in your carpet or your air ducts.
                 </p>
                 <h3>Protective</h3>
-                <p>We offer Scotch Guard treatment to lengthen the life of your carpets.</p>
+                <p>We offer Scotch Guard treatment to lengthen the life of your carpets and keep them clean.</p>
                 <h3>Environmentally conscious</h3>
                 <p>Our cleaning products are bio-degradable.</p>
                 <h3>Thorough</h3>

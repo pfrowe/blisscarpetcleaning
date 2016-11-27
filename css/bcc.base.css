@@ -112,6 +112,7 @@
   float: left;
   font-size: 2.5rem;
   line-height: 1.15em;
+  margin-bottom: 0;
 }
 .navbar-brand:focus,
 .navbar-brand:hover {
