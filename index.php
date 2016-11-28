@@ -575,8 +575,7 @@ if ($tryPost === true) {
                     <div class="carousel-inner">
                       <div class="carousel-item item active">
                         <img src="img/van-mounted.png" alt="Family owned and operated since 2007" />
-                        <h1>Family owned and operated</h1>
-                        <h2>Serving the Houston Area since 2007</h2>
+                        <h1>Family owned and operated in Houston since 2007</h1>
                       </div> <!-- END .carousel-item .item :nth-child(1) -->
                       <div class="carousel-item item">
                         <img src="img/stairs-before-after-01.png" alt="Before and after stairway carpet cleaning" />
