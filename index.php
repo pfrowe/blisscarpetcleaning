@@ -566,10 +566,38 @@ if ($tryPost === true) {
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <div class="well">
                 <div class="hero-unit">
-                  <img alt="Bliss Carpet Cleaning Van" src="img/van-mounted.png" />
-                  <div class="overlay">
-                    <h1>Family owned and operated in Houston since 2007.</h1>
-                  </div>
+                  <div id="hero__carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                      <li data-target="#hero__carousel" data-slide-to="0" class="active"></li>
+                      <li data-target="#hero__carousel" data-slide-to="1"></li>
+                      <li data-target="#hero__carousel" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                      <div class="carousel-item item active">
+                        <img src="img/van-mounted.png" alt="Family owned and operated since 2007" />
+                        <h1>Family owned and operated</h1>
+                        <h2>Serving the Houston Area since 2007</h2>
+                      </div> <!-- END .carousel-item .item :nth-child(1) -->
+                      <div class="carousel-item item">
+                        <img src="img/stairs-before-after-01.png" alt="Before and after stairway carpet cleaning" />
+                        <h2 class="carousel-item__before">Before</h2>
+                        <h2 class="carousel-item__after">After</h2>
+                      </div> <!-- END .carousel-item .item :nth-child(2) -->
+                      <div class="carousel-item item">
+                        <img src="img/carpet-before-after-01.png" alt="Before and after carpet cleaning" />
+                        <h2 class="carousel-item__before">Before</h2>
+                        <h2 class="carousel-item__after">After</h2>
+                      </div> <!-- END .carousel-item .item :nth-child(3) -->
+                    </div> <!-- END .carousel-inner -->
+                    <a class="left carousel-control" href="#hero__carousel" data-slide="prev">
+                      <span class="icon-prev" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#hero__carousel" data-slide="next">
+                      <span class="icon-next" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div> <!-- END .carousel .slide #hero__carousel -->
                 </div> <!-- END .hero-unit -->
               </div> <!-- END .well -->
             </div> <!-- END .col-sm-12 .col-md-12 .col-lg-12 .col-xl-12 -->

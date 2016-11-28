@@ -36,6 +36,20 @@
   top: 0;
   z-index: -1;
 }
+.carousel-item__after {
+  bottom: 0.5em;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  width: 50%;
+}
+.carousel-item__before {
+  top: 0.5em;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  width: 50%;
+}
 .date-control {
   position: relative;
   z-index: 3;
@@ -111,8 +125,11 @@
 .navbar-brand {
   float: left;
   font-size: 2.5rem;
+  height: auto;
   line-height: 1.15em;
   margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 .navbar-brand:focus,
 .navbar-brand:hover {
@@ -127,8 +144,9 @@
 .navbar-contact:focus,
 .navbar-contact:hover {
   color: white;
+  text-decoration: none;
   text-shadow: -1px -1px 1px #ff7200, -1px 0 1px #ff7200, -1px 1px 1px #ff7200, 0 1px 1px #ff7200,
-    1px 1px 1px #ff7200, 1px 0 1px #ff7200, 1px -1px 1px #ff7200, 0 -1px 1px #ff7200;  
+    1px 1px 1px #ff7200, 1px 0 1px #ff7200, 1px -1px 1px #ff7200, 0 -1px 1px #ff7200;
 }
 .navbar-inverse {
   background: #0bb60e;
