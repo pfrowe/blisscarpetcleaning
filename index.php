@@ -604,6 +604,24 @@ if ($tryPost === true) {
           <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
               <div class="well">
+                <h2>Connect with Us</h2>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                      <a href="https://www.facebook.com/Bliss-Carpet-Cleaning-Service-LLC-328717987501156/"
+                         target="_blank">
+                        <img alt="Find Us on Facebook" class="img-responsive" src="img/find-us-on-facebook.png" />
+                      </a>
+                    </div> <!-- END .col-sm-6 .col-md-6 .col-lg-6 .col-xl-6 -->
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                      <a href="https://www.yelp.com/biz/bliss-carpet-cleaning-cypress" target="_blank">
+                        <img alt="Rate Us on Yelp!" class="img-responsive" src="img/yelp-badge.png" />
+                      </a>
+                    </div> <!-- END .col-sm-6 .col-md-6 .col-lg-6 .col-xl-6 -->
+                  </div> <!-- END .row -->
+                </div> <!-- END .container-fluid -->
+              </div>
+              <div class="well">
                 <h2>Our Services</h2>
                 <p>Serving the Houston area since 2007, we offer a variety of cleaning services.</p>
                 <ul>
