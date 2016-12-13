@@ -610,13 +610,16 @@ if ($tryPost === true) {
                     <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                       <a href="https://www.facebook.com/Bliss-Carpet-Cleaning-Service-LLC-328717987501156/"
                          target="_blank">
-                        <img alt="Find Us on Facebook" class="img-responsive" src="img/find-us-on-facebook.png" />
+                        <img alt="Find Us on Facebook" height="33" src="img/find-us-on-facebook.png" />
                       </a>
                     </div> <!-- END .col-sm-6 .col-md-6 .col-lg-6 .col-xl-6 -->
                     <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                      <a href="https://www.yelp.com/biz/bliss-carpet-cleaning-cypress" target="_blank">
-                        <img alt="Rate Us on Yelp!" class="img-responsive" src="img/yelp-badge.png" />
-                      </a>
+                      <div id="yelp-biz-badge-plain-_Yz5KnRgWDvilOpeWIhL2Q">
+                        <a href="http://yelp.com/biz/bliss-carpet-cleaning-cypress?utm_medium=badge_button&amp;utm_source=biz_review_badge"
+                           target="_blank">
+                          Check out Bliss Carpet Cleaning on Yelp
+                        </a>
+                      </div>
                     </div> <!-- END .col-sm-6 .col-md-6 .col-lg-6 .col-xl-6 -->
                   </div> <!-- END .row -->
                 </div> <!-- END .container-fluid -->

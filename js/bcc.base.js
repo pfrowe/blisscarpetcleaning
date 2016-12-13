@@ -2,6 +2,7 @@
 /*global $, ga, jQuery, alert*/
 var bcc_base = (function () {
   "use strict";
+  var idYelp = "_Yz5KnRgWDvilOpeWIhL2Q";
   function createGoogleAnalyticsObject(i, s, o, g, r, a, m) {
     i.GoogleAnalyticsObject = r;
     i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments); };
@@ -29,6 +30,13 @@ var bcc_base = (function () {
     ga("create", "UA-87073608-1", "auto");
     ga("send", "pageview");
   }
+  function updateYelpBadge() {
+    if ($("#yelp-biz-badge-plain-" + idYelp + " img").length > 0) {
+      $("#yelp-biz-badge-plain-" + idYelp + " a").attr("target", "_blank");
+    } else {
+      setTimeout(updateYelpBadge, 100);
+    }
+  }
   function onClick_error(event) {
     var $target = $("#" + $(event.target).attr("for"));
     if ($target.length === 0) {
@@ -45,6 +53,14 @@ var bcc_base = (function () {
   function onClick_navLink(event) {
     $(".navbar-collapse").collapse("hide");
   }
+  function onReady_yelpBadge() {
+    var yelpScript = document.createElement("script"),
+      firstScript = document.getElementsByTagName("script")[0];
+    yelpScript.id = "yelp-biz-badge-script-plain-" + idYelp;
+    yelpScript.src = "//yelp.com/biz_badge_js/en_US/plain/" + idYelp + ".js";
+    firstScript.parentNode.insertBefore(yelpScript, firstScript);
+    updateYelpBadge();
+  }
   function onReady(event) {
     $(".alert-danger > ul > li").on("click", onClick_error);
     $(".nav > li > a").on("click", onClick_navLink);
@@ -52,6 +68,7 @@ var bcc_base = (function () {
     submitGoogleAnalyticsData();
     initDatePickers();
     initTimePickers();
+    onReady_yelpBadge();
     loadFonts();
   }
   $(document).ready(onReady);
