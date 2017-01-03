@@ -515,7 +515,7 @@ if ($tryPost === true) {
     <title>Bliss Carpet Cleaning - Serving Houston, TX</title>
     <meta charset="utf-8" />
     <meta name="description"
-          content="Bliss Carpet Cleaning is a family-owned and -operated business serving Houston, TX, and providing services including: carpet cleaning, wood floor cleaning, tile and grout cleaning, upholstery cleaning, carpet repair, carpet dying, and air duct cleaning." />
+          content="Bliss Carpet Cleaning provides professional carpet cleaning in Houston, TX, and surrounding areas, including Addicks, Aldine, Cinco Ranch, Cypress, Fairfield, Hockley, Hufsmith, Jersey Village, Katy, Klein, Kohrville, Rose Hill, Spring, South Houston, Tomball, Westfield, Willow, and The Woodlands. We also perform wood floor cleaning, tile and grout cleaning, upholstery cleaning, carpet repair, carpet dying, and air duct cleaning." />
     <meta name="keywords"
           content="Bliss Carpet Cleaning, Perfection Carpet Cleaning, carpet cleaning, rug cleaning, hardwood floor cleaning, wood floor cleaning, hardwood polishing, tile cleaning, grout cleaning, tile and grout cleaning, upholstery cleaning, couch cleaning, sofa cleaning, armchair cleaning, carpet repair, carpet dye, carpet dying, air duct cleaning, air vent cleaning, vehicle cleaning, Scotch Guard, pre-treatment, water rinse, truck-mounted, anti-microbial, hypoallergenic, Houston, Cypress, Tomball" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -626,7 +626,7 @@ if ($tryPost === true) {
               </div>
               <div class="well">
                 <h2>Our Services</h2>
-                <p>Serving the Houston area since 2007, we offer a variety of cleaning services.</p>
+                <p>We offer a variety of professional cleaning services in the Houston area.</p>
                 <ul>
                   <li>Carpet cleaning</li>
                   <li>Upholstery cleaning</li>
