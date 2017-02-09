@@ -517,7 +517,7 @@ if ($tryPost === true) {
     <meta name="description"
           content="Bliss Carpet Cleaning provides professional carpet cleaning in Houston, TX, and surrounding areas, including Addicks, Aldine, Cinco Ranch, Cypress, Fairfield, Hockley, Hufsmith, Jersey Village, Katy, Klein, Kohrville, Rose Hill, Spring, South Houston, Tomball, Westfield, Willow, and The Woodlands. We also perform wood floor cleaning, tile and grout cleaning, upholstery cleaning, carpet repair, carpet dying, and air duct cleaning." />
     <meta name="keywords"
-          content="Bliss Carpet Cleaning, Perfection Carpet Cleaning, carpet cleaning, rug cleaning, hardwood floor cleaning, wood floor cleaning, hardwood polishing, tile cleaning, grout cleaning, tile and grout cleaning, upholstery cleaning, couch cleaning, sofa cleaning, armchair cleaning, carpet repair, carpet dye, carpet dying, air duct cleaning, air vent cleaning, vehicle cleaning, Scotch Guard, pre-treatment, water rinse, truck-mounted, anti-microbial, hypoallergenic, Houston, Cypress, Tomball" />
+          content="Bliss Carpet Cleaning, Perfection Carpet Cleaning, carpet cleaning, rug cleaning, hardwood floor cleaning, wood floor cleaning, hardwood polishing, tile cleaning, grout cleaning, tile and grout cleaning, upholstery cleaning, couch cleaning, sofa cleaning, armchair cleaning, carpet repair, carpet dye, carpet dying, air duct cleaning, air vent cleaning, vehicle cleaning, Scotch Guard, pre-treatment, water rinse, truck-mounted, anti-microbial, hypoallergenic, Cypress, Houston, Spring, Tomball, #CypressTX, #HoustonTX, #SpringTX, #TomballTX, #local, #Local" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
@@ -575,17 +575,17 @@ if ($tryPost === true) {
                     <div class="carousel-inner">
                       <div class="carousel-item item active">
                         <img src="img/van-mounted.png" alt="Family owned and operated since 2007" />
-                        <h1>Family owned and operated in Houston since 2007</h1>
+                        <div class="carousel-item__caption">Family owned and operated in Houston since 2007</div>
                       </div> <!-- END .carousel-item .item :nth-child(1) -->
                       <div class="carousel-item item">
                         <img src="img/stairs-before-after-01.png" alt="Before and after stairway carpet cleaning" />
-                        <h2 class="carousel-item__before">Before</h2>
-                        <h2 class="carousel-item__after">After</h2>
+                        <div class="carousel-item__caption carousel-item__before">Before</div>
+                        <div class="carousel-item__caption carousel-item__after">After</div>
                       </div> <!-- END .carousel-item .item :nth-child(2) -->
                       <div class="carousel-item item">
                         <img src="img/carpet-before-after-01.png" alt="Before and after carpet cleaning" />
-                        <h2 class="carousel-item__before">Before</h2>
-                        <h2 class="carousel-item__after">After</h2>
+                        <div class="carousel-item__caption carousel-item__before">Before</div>
+                        <div class="carousel-item__caption carousel-item__after">After</div>
                       </div> <!-- END .carousel-item .item :nth-child(3) -->
                     </div> <!-- END .carousel-inner -->
                     <a class="left carousel-control" href="#hero__carousel" data-slide="prev">

@@ -24,9 +24,10 @@
   text-shadow: -1px -1px 1px white, -1px 0 1px white, -1px 1px 1px white, 0 1px 1px white,
     1px 1px 1px white, 1px 0 1px white, 1px -1px 1px white, 0 -1px 1px white;
 }
-.carousel-item h1,
-.carousel-item h2,
-.carousel-item h3 {
+.carousel-item__caption {
+  color: #ff7200;
+  font-family: Chango, cursive;
+  font-size: 2.5rem;
   margin-top: 0px;
   text-align: center;
 }
@@ -279,14 +280,8 @@ table.pull-right {
   }
 }
 @media (max-width: 767px) and (orientation: portrait) {
-  .hero-unit h1 {
+  .carousel-item__caption {
     font-size: 4vw;
-  }
-  .hero-unit h2 {
-    font-size: 3.5vw;
-  }
-  .hero-unit h3 {
-    font-size: 3vw;
   }
   .navbar img.logo {
     position: relative;
