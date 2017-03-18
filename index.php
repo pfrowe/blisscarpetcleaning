@@ -667,7 +667,7 @@ if ($tryPost === true) {
             </div> <!-- END .col-xs-12 .col-sm-12 .col-md-6 .col-lg-6 -->
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
               <div class="well">
-                <h2>3 Rooms Special &ndash; $75</h2>
+                <h2>3 Rooms Special &ndash; $90</h2>
                 <h3>1 Free Hallway (Max)</h3>
                 <p>Includes detergent, odor killer, and deodorizers.</p>
               </div> <!-- END .well -->
@@ -683,8 +683,7 @@ if ($tryPost === true) {
                 <p>
                   Heavy traffic stains? Red stains? Gum residue? Rust stains? Pet stains? We use a unique combination of
                   products to break up these and other stains in your carpet before pulling them out with our cleaning
-                  equipment. Pre-treatment starts at $15; this normally handles spot-cleaning of two rooms. Additional
-                  charges may be incurred for more rooms and large or hard-to-lift stains.
+                  equipment.
                 </p>
                 <h3>Scotch Guard</h3>
                 <p>Now that it's clean, protect your carpet or upholstery from future stains.</p>
